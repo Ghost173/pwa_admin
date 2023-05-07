@@ -4,10 +4,13 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Api\Visitor;
+use App\Models\Api\Contact;
 use Illuminate\Support\Carbon;
+use App\Mail\Contactform;
 
-class VisitorController extends Controller
+
+
+class ContactController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,20 +23,23 @@ class VisitorController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        $ip_address = $_SERVER['REMOTE_ADDR'];
+        $name = $request->input('name');
+        $email = $request->input('email');
+        $message = $request->input('message');
         date_default_timezone_set("Asia/Colombo");
-        $visit_time = date("h:i:sa");
-        $visit_date = date("d-m-y");
+        $contact_time = date("h:i:sa");
+        $contact_date = date("d-m-y");
 
-        $result = Visitor::insert([
-            'ip_address' => $ip_address,
-            'visit_time' => $visit_time,
-            'visit_date' => $visit_date,
+        $result = Contact::insert([
+            'name' => $name,
+            'email' => $email,
+            'message' => $message,
+            'date' => $contact_date,
+            'time' => $contact_time,
             'created_at' =>Carbon::now()
         ]);
-        
         return $result;
     }
 

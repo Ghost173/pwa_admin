@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\VisitorController;
+use App\Http\Controllers\Api\ContactController;
 
 
 /*
@@ -22,3 +23,6 @@ use App\Http\Controllers\Api\VisitorController;
 
 
 Route::get('/createvisitor', [VisitorController::class, 'create']);
+
+//contact api 
+Route::post('/postcontact' , [ContactController::class, 'create']);
