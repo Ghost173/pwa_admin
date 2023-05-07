@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\VisitorController;
 use App\Http\Controllers\Api\ContactController;
+use App\Http\Controllers\Api\SiteinfoController;
 
 
 /*
@@ -26,3 +27,6 @@ Route::get('/createvisitor', [VisitorController::class, 'create']);
 
 //contact api 
 Route::post('/postcontact' , [ContactController::class, 'create']);
+
+//site info get(about us, refund, address, social links....) 
+Route::get('/allsiteinfo' , [SiteinfoController::class, 'index']);
