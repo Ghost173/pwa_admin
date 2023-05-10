@@ -49,5 +49,8 @@ Route::get('/productlistbysubcategory/{category_id}/{subcategory_id}' , [Product
 
 
 
-//late use this
+//Get feature products 
 Route::get('/featureProducts' , [ProductListController::class, 'featureProducts']);
+
+//Get NEW ARRIVALS  products 
+Route::get('/newarrivals' , [ProductListController::class, 'newarrivals']);

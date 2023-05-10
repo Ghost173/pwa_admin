@@ -22,12 +22,29 @@ class ProductListController extends Controller
 
 
     public function productlistbysubcategory($category_id, $subcategory_id) {
-        $product_list_basedon_subcategory = ProductList::where('product_category_id',$category_id)->where('product_subcategory_id',$subcategory_id)->get();
+
+       $product_list_basedon_subcategory=  ProductList::where([
+            ['product_category_id', '=', $category_id],
+            ['product_subcategory_id', '=', $subcategory_id],
+            ['product_status', '=', 1]
+        ])->get();
+
         return ($product_list_basedon_subcategory);
     }
 
     public function featureProducts () {
-        $product_list = ProductList::where('Feature','1')->get();
+        $product_list = ProductList::where('Feature',1)->where('product_status',1)->latest()
+        ->take(6)->get();
         return $product_list;
+    }
+
+    public function newarrivals() {
+        $newArrival = ProductList::where('Feature', 1)
+        ->where('product_status', 1)
+        ->latest()
+        ->limit(10)
+        ->get();
+
+        return $newArrival;
     }
 }
