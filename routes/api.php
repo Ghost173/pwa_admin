@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\VisitorController;
 use App\Http\Controllers\Api\ContactController;
 use App\Http\Controllers\Api\SiteinfoController;
+use App\Http\Controllers\Api\ApiCategoryController;
 
 
 /*
@@ -30,3 +31,7 @@ Route::post('/postcontact' , [ContactController::class, 'create']);
 
 //site info get(about us, refund, address, social links....) 
 Route::get('/allsiteinfo' , [SiteinfoController::class, 'index']);
+
+
+// All category api
+Route::get('/allcategory' , [ApiCategoryController::class, 'index']);
