@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\VisitorController;
 use App\Http\Controllers\Api\ContactController;
 use App\Http\Controllers\Api\SiteinfoController;
 use App\Http\Controllers\Api\ApiCategoryController;
+use App\Http\Controllers\Api\ProductListController;
 
 
 /*
@@ -35,3 +36,18 @@ Route::get('/allsiteinfo' , [SiteinfoController::class, 'index']);
 
 // All category api
 Route::get('/allcategory' , [ApiCategoryController::class, 'index']);
+
+
+//products
+Route::get('/productlistbyremark/{remark}' , [ProductListController::class, 'productlistremark']);
+
+//Product list based on the category 
+Route::get('/productlistbycategory/{category_id}' , [ProductListController::class, 'productlistbycategory']);
+
+//Product list based on the subcategory 
+Route::get('/productlistbysubcategory/{category_id}/{subcategory_id}' , [ProductListController::class, 'productlistbysubcategory']);
+
+
+
+//late use this
+Route::get('/featureProducts' , [ProductListController::class, 'featureProducts']);
