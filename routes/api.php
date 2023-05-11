@@ -54,3 +54,6 @@ Route::get('/featureProducts' , [ProductListController::class, 'featureProducts'
 
 //Get NEW ARRIVALS  products 
 Route::get('/newarrivals' , [ProductListController::class, 'newarrivals']);
+
+//GetColletion products  
+Route::get('/productscolletions' , [ProductListController::class, 'productscolletions']);

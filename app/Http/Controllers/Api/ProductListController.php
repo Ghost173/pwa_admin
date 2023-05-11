@@ -33,18 +33,24 @@ class ProductListController extends Controller
     }
 
     public function featureProducts () {
-        $product_list = ProductList::where('Feature',1)->where('product_status',1)->latest()
+        $product_list = ProductList::where('Feature_product',1)->where('product_status',1)->latest()
         ->take(6)->get();
         return $product_list;
     }
 
     public function newarrivals() {
-        $newArrival = ProductList::where('Feature', 1)
-        ->where('product_status', 1)
+        $newArrival = ProductList::where('product_status', 1)
         ->latest()
         ->limit(10)
         ->get();
 
         return $newArrival;
+    }
+
+
+    public function productscolletions() {
+        $product_colletions_list = ProductList::where('product_collection',1)->where('product_status',1)->latest()
+        ->take(4)->get();
+        return $product_colletions_list;
     }
 }
