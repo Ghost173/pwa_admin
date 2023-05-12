@@ -22,6 +22,7 @@ class ApiCategoryController extends Controller
                 'category_name' => $value->category_name,
                 'category_image' =>$value->category_image,
                 'category_icon' =>$value->category_icon,
+                'id' => $value->id,
                 'subcat' => $subcategory
                
             ];
