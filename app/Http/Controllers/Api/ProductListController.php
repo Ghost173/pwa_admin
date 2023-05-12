@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\ProductList;
+use App\Models\Category;
+use App\Models\SubCategory;
 
 
 class ProductListController extends Controller
@@ -16,20 +18,36 @@ class ProductListController extends Controller
 
 
     public function productlistbycategory($category_id) {
+        $category_name = Category::where('id',$category_id)->select('category_name')->get();
         $product_list_basedon_category = ProductList::where('product_category_id',$category_id)->get();
-        return $product_list_basedon_category;
+
+        $response = [
+            'category_name' =>$category_name,
+            'product_list_basedon_category' => $product_list_basedon_category
+        ];
+
+        return $response;
+
     }
 
 
     public function productlistbysubcategory($category_id, $subcategory_id) {
-
-       $product_list_basedon_subcategory=  ProductList::where([
+        $category_name = Category::where('id',$category_id)->select('category_name')->get();
+        $subcategory_name = SubCategory::where('id',$subcategory_id)->select('subcategory_name')->get();
+       $product_list_basedon_subcategory =  ProductList::where([
             ['product_category_id', '=', $category_id],
             ['product_subcategory_id', '=', $subcategory_id],
             ['product_status', '=', 1]
         ])->get();
 
-        return ($product_list_basedon_subcategory);
+        $response = [
+            'category_name' => $category_name ,
+            'subcategory_name' => $subcategory_name ,
+            'product_list_basedon_subcategory' => $product_list_basedon_subcategory,
+            
+        ];
+
+        return ($response);
     }
 
     public function featureProducts () {
