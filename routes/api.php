@@ -45,8 +45,12 @@ Route::get('/productlistbyremark/{remark}' , [ProductListController::class, 'pro
 //Product list based on the category 
 Route::get('/productlistbycategory/{category_id}' , [ProductListController::class, 'productlistbycategory']);
 
+
+//product details 
+Route::get('/productdetails/{product_id}' , [ProductListController::class, 'productDetails']);
+
 //Product list based on the subcategory 
-Route::get('/productlistbysubcategory/{category_id}/{subcategory_id}' , [ProductListController::class, 'productlistbysubcategory']);
+Route::get('/productlistbysubcategory/{category_id}/{subcategory_id}' , [ProductListController::class, 'productDetails']);
 
 
 

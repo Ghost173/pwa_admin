@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\ProductList;
 use App\Models\Category;
 use App\Models\SubCategory;
-
+use App\Models\ProducDetails;
 
 class ProductListController extends Controller
 {
@@ -70,5 +70,19 @@ class ProductListController extends Controller
         $product_colletions_list = ProductList::where('product_collection',1)->where('product_status',1)->latest()
         ->take(4)->get();
         return $product_colletions_list;
+    }
+
+
+    public function productDetails($product_id) {
+        $product_details = ProducDetails::where('product_id',$product_id)->get();
+        $product_list = ProductList::where('id',$product_id)->get();
+
+        $data = [
+            'product_details' => $product_details,
+            'product_list' =>$product_list
+        ];
+
+        return $data;
+            
     }
 }
