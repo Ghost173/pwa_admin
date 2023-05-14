@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\ContactController;
 use App\Http\Controllers\Api\SiteinfoController;
 use App\Http\Controllers\Api\ApiCategoryController;
 use App\Http\Controllers\Api\ProductListController;
+use App\Http\Controllers\Api\ApiSliderController;
 
 
 /*
@@ -57,3 +58,7 @@ Route::get('/newarrivals' , [ProductListController::class, 'newarrivals']);
 
 //GetColletion products  
 Route::get('/productscolletions' , [ProductListController::class, 'productscolletions']);
+
+
+//get home page slider
+Route::get('/getsliders' , [ApiSliderController::class, 'getSliders']);
