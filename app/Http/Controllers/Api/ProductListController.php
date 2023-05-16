@@ -90,4 +90,15 @@ class ProductListController extends Controller
         return $data;
             
     }
+
+
+
+    public function suggestproducts($product_id) {
+        $product = ProductList::where('id',$product_id)->first();
+        $product_catgeory_id = $product->product_category_id;
+        $suggest_products = ProductList::where('product_category_id',$product_catgeory_id)->
+            inRandomOrder()->limit(6)->get();
+
+        return($suggest_products);
+    }
 }

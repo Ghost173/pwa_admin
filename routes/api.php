@@ -46,8 +46,11 @@ Route::get('/productlistbyremark/{remark}' , [ProductListController::class, 'pro
 Route::get('/productlistbycategory/{category_id}' , [ProductListController::class, 'productlistbycategory']);
 
 
-//product details 
+//Single product details 
 Route::get('/productdetails/{product_id}' , [ProductListController::class, 'SingleproductDetails']);
+
+//Suggest product based on the selected products in the single product list 
+Route::get('/suggestproducts/{product_id}' , [ProductListController::class, 'suggestproducts']);
 
 //Product list based on the subcategory 
 Route::get('/productlistbysubcategory/{category_id}/{subcategory_id}' , [ProductListController::class, 'productlistbysubcategory']);
