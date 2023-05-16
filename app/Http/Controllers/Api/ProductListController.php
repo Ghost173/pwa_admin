@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\ProductList;
 use App\Models\Category;
 use App\Models\SubCategory;
-use App\Models\ProducDetails;
+use App\Models\productDetails;
 
 class ProductListController extends Controller
 {
@@ -73,13 +73,18 @@ class ProductListController extends Controller
     }
 
 
-    public function productDetails($product_id) {
-        $product_details = ProducDetails::where('product_id',$product_id)->get();
-        $product_list = ProductList::where('id',$product_id)->get();
+    public function SingleproductDetails($product_id) {
+        $product_details = productDetails::where('product_id',$product_id)->first();
+        $product_list = ProductList::where('id',$product_id)->first();
+        $du8mpp = $product_list->product_category_id;
+        $product_category = Category::where('id',$product_list->product_category_id)->select('id','category_name')->get();
+        $Product_subcategoy = SubCategory::where('id',$product_list->product_subcategory_id)->select('id','subcategory_name')->get();
 
         $data = [
             'product_details' => $product_details,
-            'product_list' =>$product_list
+            'product_list' =>$product_list,
+            'catgeory_name' => $product_category,
+            'Product_subcategoy' =>$Product_subcategoy,
         ];
 
         return $data;

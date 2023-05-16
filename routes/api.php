@@ -47,10 +47,10 @@ Route::get('/productlistbycategory/{category_id}' , [ProductListController::clas
 
 
 //product details 
-Route::get('/productdetails/{product_id}' , [ProductListController::class, 'productDetails']);
+Route::get('/productdetails/{product_id}' , [ProductListController::class, 'SingleproductDetails']);
 
 //Product list based on the subcategory 
-Route::get('/productlistbysubcategory/{category_id}/{subcategory_id}' , [ProductListController::class, 'productDetails']);
+Route::get('/productlistbysubcategory/{category_id}/{subcategory_id}' , [ProductListController::class, 'productlistbysubcategory']);
 
 
 
