@@ -8,6 +8,8 @@ use App\Http\Controllers\Api\SiteinfoController;
 use App\Http\Controllers\Api\ApiCategoryController;
 use App\Http\Controllers\Api\ProductListController;
 use App\Http\Controllers\Api\ApiSliderController;
+use App\Http\Controllers\Api\ApiNotificationController;
+
 
 
 /*
@@ -69,3 +71,9 @@ Route::get('/productscolletions' , [ProductListController::class, 'productscolle
 
 //get home page slider
 Route::get('/getsliders' , [ApiSliderController::class, 'getSliders']);
+
+
+
+
+//Notification 
+Route::get('/getnotifications' , [ApiNotificationController::class, 'getNotifications']);
