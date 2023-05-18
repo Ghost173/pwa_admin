@@ -101,4 +101,12 @@ class ProductListController extends Controller
 
         return($suggest_products);
     }
+
+
+
+
+    public function searchProduct($key){
+         $productlist = ProductList::where('product_title', 'LIKE',"%{$key}%")->orWhere('product_brand', 'LIKE',"%{$key}%")->orWhere('product_code', 'LIKE',"%{$key}%")->get();
+         return $productlist;
+    }
 }

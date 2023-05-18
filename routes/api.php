@@ -57,6 +57,11 @@ Route::get('/suggestproducts/{product_id}' , [ProductListController::class, 'sug
 //Product list based on the subcategory 
 Route::get('/productlistbysubcategory/{category_id}/{subcategory_id}' , [ProductListController::class, 'productlistbysubcategory']);
 
+//search
+Route::get('/search/{key}' , [ProductListController::class, 'searchProduct']);
+
+http://localhost:3000/singleproductdetails/1
+
 
 
 //Get feature products 
@@ -77,3 +82,6 @@ Route::get('/getsliders' , [ApiSliderController::class, 'getSliders']);
 
 //Notification 
 Route::get('/getnotifications' , [ApiNotificationController::class, 'getNotifications']);
+
+
+//Search
