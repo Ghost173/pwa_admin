@@ -87,3 +87,5 @@ Route::get('/getnotifications' , [ApiNotificationController::class, 'getNotifica
 
 //UserLogin
 Route::post('/login' , [AuthController::class, 'Login']);
+Route::post('/register' , [AuthController::class, 'Register']);
+Route::post('/logout' , [AuthController::class, 'logout']);
