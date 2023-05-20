@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\ApiCategoryController;
 use App\Http\Controllers\Api\ProductListController;
 use App\Http\Controllers\Api\ApiSliderController;
 use App\Http\Controllers\Api\ApiNotificationController;
+use App\Http\Controllers\Api\AuthController;
 
 
 
@@ -84,4 +85,5 @@ Route::get('/getsliders' , [ApiSliderController::class, 'getSliders']);
 Route::get('/getnotifications' , [ApiNotificationController::class, 'getNotifications']);
 
 
-//Search
+//UserLogin
+Route::post('/login' , [AuthController::class, 'Login']);
