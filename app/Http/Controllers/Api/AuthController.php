@@ -11,7 +11,8 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\RegisterRequest;
 use Illuminate\Support\Facades\Validator;
-
+use Mail;
+use App\Mail\ForgotPasswordMail;
 
 class AuthController extends Controller
 {
@@ -53,7 +54,7 @@ class AuthController extends Controller
         ]);
         if ($validator->fails())
         {
-            return response(['errors'=>$validator->errors()->all()], 422);
+            return response(['errors'=>$validator->errors()->all()], 401);
         }
 
     try {
@@ -90,4 +91,49 @@ class AuthController extends Controller
         return response(['message'=> 'Je bent uitgelogd'], 200);
     }
    
+
+    public function forgotpassword(Request $request) {
+
+
+        $validator = Validator::make($request->all(), [
+            'email' => 'required',
+        ]);
+        if ($validator->fails())
+        {
+            return response(['errors'=>$validator->errors()->all()], 401);
+        }
+
+
+        $email = $request->email;
+
+        if(User::where('email',$email)->doesntExist()) {
+            return response([
+                'message' => 'Email not found with in the database'
+            ],401);
+        }
+
+        //generate random token for rest 
+        $token = rand(10,100000);
+        try {
+            DB::table('password_reset_tokens')->insert([
+                'email'=> $email,
+                'token' => $token
+            ]);
+
+            //mail function
+            Mail::to($email)->send(new ForgotPasswordMail($token));
+
+            return response ([
+                'message' => 'Rest password email was sent'
+            ],200);
+
+        }catch (\Throwable $th) {
+            return response([
+                'message'=> $th->getMessage()
+            ],400);
+        }
+    }
+
+
+
 }

@@ -9,16 +9,18 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class Contactform extends Mailable
+class ForgotPasswordMail extends Mailable
 {
     use Queueable, SerializesModels;
+
+ 
 
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct(public $token)
     {
-        //
+        
     }
 
     /**
@@ -27,7 +29,7 @@ class Contactform extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Contactform',
+            subject: 'Forgot Password Mail',
         );
     }
 
@@ -37,7 +39,7 @@ class Contactform extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'view.name',
+            view: 'emails.forgetpasswordreset'
         );
     }
 
