@@ -68,7 +68,7 @@ class ProductListController extends Controller
 
     public function productscolletions() {
         $product_colletions_list = ProductList::where('product_collection',1)->where('product_status',1)->latest()
-        ->take(4)->get();
+        ->take(6)->get();
         return $product_colletions_list;
     }
 
