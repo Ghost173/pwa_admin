@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Api\Contact;
 use Illuminate\Support\Carbon;
 use App\Mail\Contactform;
+use Mail;
+use App\Mail\ContactUsMail;
 
 
 
@@ -40,7 +42,19 @@ class ContactController extends Controller
             'time' => $contact_time,
             'created_at' =>Carbon::now()
         ]);
-        return $result;
+        
+        try {
+            Mail::to($email)->send(new ContactUsMail($name));
+        }catch(Exception $exception) {
+            return response([
+                'message'=> $exception->getMessage()
+            ],400);
+        }
+
+
+        return response([
+            'message' => 'Thank you for contact Us'
+        ]);
     }
 
     /**

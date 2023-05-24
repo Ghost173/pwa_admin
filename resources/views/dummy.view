@@ -1,0 +1,150 @@
+  public function Login(Request $request) {
+
+
+        $request->validate([
+            'email' => 'required',
+            'password' => 'required',
+        ]);
+
+        $user = User::where('email',$rquest->email)->first();
+        
+        if(!$user|| !Hash::check($request->password, $user->password)) {
+            return response ([
+                'message' => 'email or password is wrong...!'
+            ]);
+        }
+
+        $token = $user->createToken('app')->accessToken;
+            return response ([
+                'message' => 'registration successful',
+                'token' => $token,
+            ],200);
+    }
+
+        // try{
+            
+        //     if(Auth::attempt($request->only('email','password'))) {
+        //         $user = Auth::user();
+        //         $token = $user->createToken('app')->accessToken;
+
+        //         return response ([
+        //             'message' => "Successfully Login",
+        //             'token' => $token,
+        //             'UserDetails' => $user
+        //         ],200);
+        //     }
+
+
+        // }catch(Exception $exception) {
+        //     return response([
+        //         'message'=> $exception->getMessage()
+        //     ],400);
+        // }
+
+        // return response ([
+        //     'message' => "Invalid Email or password"
+        // ],401);
+        
+    }
+
+
+
+
+    public function Register(Request $request) {
+        // try {
+            // $user = User::create([
+            //     'name' => $request->name,
+            //     'email'=> $request->email,
+            //     'password'=>Hash::make($request->password),
+            // ]);
+        //     $token = $user->createToken('app')->accessToken;
+
+        //     return response ([
+        //         'message' => 'registration successful',
+        //         'token' => $token,
+        //         'user'=>$user 
+        //     ],200);
+
+        // } catch (\Throwable $th) {
+        //     return response([
+        //         'message'=> $exception->getMessage()
+        //     ],400);
+        // }
+
+
+        $request->validate([
+            'name' => 'required|max:55',
+            'email' => 'required|unique:users|max:55',
+            'password' => 'required|min:6|max:20',
+        ]);
+        
+        $user = User::create([
+            'name' => $request->name,
+            'email'=> $request->email,
+            'password'=>Hash::make($request->password),
+        ]);
+        $token = $user->createToken('app')->accessToken;
+            return response ([
+                'message' => 'registration successful',
+                'token' => $token,
+                'user'=>$user 
+            ],200);
+    }
+
+
+
+ public function Login(Request $request) {
+        $request->validate([
+            'email' => 'required',
+            'password' => 'required',
+        ]);
+
+        $user = User::where('email',$request->email)->first();
+        
+
+        if(!$user|| !Hash::check($request->password, $user->password)) {
+            return response ([
+                'message' => 'email or password is wrong...!'
+            ]);
+        }
+
+        $token = $user->createToken('app')->accessToken;
+            return response ([
+                'message' => 'registration successful',
+                'token' => $token,
+            ],200);
+    }
+
+
+
+    public function Register (Request $request) {
+        $request->validate([
+            'name' => 'required|max:55',
+            'email' => 'required|unique:users|max:55',
+            'password' => 'required|min:6|max:20',
+        ]);
+        
+        $user = User::create([
+            'name' => $request->name,
+            'email'=> $request->email,
+            'password'=>Hash::make($request->password),
+        ]);
+
+        $token = $user->createToken('app')->accessToken;
+        return response ([
+            'message' => 'registration successful',
+            'token' => $token,
+            'user'=>$user 
+        ],200);
+    }
+
+
+
+
+    public function logout(Request $request) {
+        $request->user()->token()->revoke();
+
+        return response ([
+            'message' => 'logout success'
+        ]);
+    }
