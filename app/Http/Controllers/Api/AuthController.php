@@ -135,5 +135,41 @@ class AuthController extends Controller
     }
 
 
+    public function restpassword(Request $request) {
+        $validator = Validator::make($request->all(), [
+            'token' => 'required',
+            'email' => 'required',
+            'password'=> 'required|string|min:6|confirmed',
+        ]);
+        if ($validator->fails())
+        {
+            return response(['errors'=>$validator->errors()->all()], 401);
+        }
 
+        $email = $request->email;
+        $token = $request->token;
+        $password = Hash::make($request->password);
+
+        $emailcheck = DB::table('password_reset_tokens')->where('email',$email)->where('token',$token)->first();
+
+        if(!$emailcheck) {
+            return response ([
+                'message' => 'Enter data was mismatch'
+            ],401);
+        }
+
+        DB::table('users')->where('email',$email)->update(['password' => $password]);
+        DB::table('password_reset_tokens')->where('email',$email)->delete();
+
+        return response ([
+            'message' => 'password change success'
+        ],200);
+
+    }
+
+
+
+    public function user() {
+        return Auth::user();
+    }
 }
