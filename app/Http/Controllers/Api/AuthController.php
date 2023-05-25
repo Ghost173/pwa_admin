@@ -13,6 +13,7 @@ use App\Http\Requests\RegisterRequest;
 use Illuminate\Support\Facades\Validator;
 use Mail;
 use App\Mail\ForgotPasswordMail;
+use App\Mail\passwordResetConfirm;
 
 class AuthController extends Controller
 {
@@ -160,6 +161,10 @@ class AuthController extends Controller
 
         DB::table('users')->where('email',$email)->update(['password' => $password]);
         DB::table('password_reset_tokens')->where('email',$email)->delete();
+
+
+        Mail::to($email)->send(new passwordResetConfirm);
+
 
         return response ([
             'message' => 'password change success'

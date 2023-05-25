@@ -37,7 +37,7 @@ class passwordResetConfirm extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'view.name',
+            view: 'emails.passwordResetConfirm',
         );
     }
 
