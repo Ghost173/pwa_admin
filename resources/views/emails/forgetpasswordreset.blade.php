@@ -7,7 +7,7 @@
     <title>Forget password?</title>
 </head>
 <body>
-    Chnage your password <a href="http://127.0.0.1:8000/passwirdreset/{{$token}}">Click Here</a>
+    Change your password <a href="http://127.0.0.1:8000/passwirdreset/{{$token}}">Click Here</a>
     <br>
     Pincode: {{$token}}
 </body>

@@ -11,6 +11,7 @@ use App\Http\Controllers\Api\ApiSliderController;
 use App\Http\Controllers\Api\ApiNotificationController;
 use App\Http\Controllers\Api\AuthController;
 
+use App\Http\Controllers\Api\ProductReviewController;
 
 
 /*
@@ -91,3 +92,7 @@ Route::post('/forgotpassword' , [AuthController::class, 'forgotpassword']);
 Route::post('/restpassword' , [AuthController::class, 'restpassword']);
 Route::get('/user' , [AuthController::class, 'user'])->middleware('auth:api');
 
+
+
+//reviews for products 
+Route::get('/reviewlists/{id}' , [ProductReviewController::class, 'getAllReviewList']);
