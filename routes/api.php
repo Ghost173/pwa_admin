@@ -12,6 +12,7 @@ use App\Http\Controllers\Api\ApiNotificationController;
 use App\Http\Controllers\Api\AuthController;
 
 use App\Http\Controllers\Api\ProductReviewController;
+use App\Http\Controllers\Api\ProductCartController;
 
 
 /*
@@ -96,3 +97,7 @@ Route::get('/user' , [AuthController::class, 'user'])->middleware('auth:api');
 
 //reviews for products 
 Route::get('/reviewlists/{id}' , [ProductReviewController::class, 'getAllReviewList']);
+
+
+//product add to cart 
+Route::post('/addtocart' , [ProductCartController::class, 'addtocart']);
