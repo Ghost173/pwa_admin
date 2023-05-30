@@ -16,7 +16,6 @@ class ProductCartController extends Controller
         $product_quantity = $request->input('product_quantity');
         $product_id = $request->input('product_id');
         $user_id = $request->input('user_id');
-
         $product_details = ProductList::where('id', $product_id)->get();
         $price = $product_details[0]['product_price'];
         $discount_price = $product_details[0]['discount_price'];
@@ -25,11 +24,13 @@ class ProductCartController extends Controller
 
 
         $validatecart = ProductCart::where('user_id',$user_id)->where('product_id',$product_id)->get();
+        $count = $validatecart->count();
 
-         if($validatecart) {
+         if($count > 0) {
             return response()->json(['error' => 'Cart item already exists'], 400);
 
          }else {
+
             if($discount_price =="na") {
                 $total_price = $price*$product_quantity;
                 $unit_price = $price;
@@ -37,10 +38,9 @@ class ProductCartController extends Controller
                 $total_price = $discount_price*$product_quantity;
                 $unit_price = $discount_price;
             }
-    
             $request = ProductCart::insert([
                 'product_id' => $product_id,
-                'user_id'  => $product_id,
+                'user_id'  => $user_id,
                 'email' =>  $email,
                 'image' =>  $product_image,
                 'product_name' =>  $product_title,
@@ -52,9 +52,14 @@ class ProductCartController extends Controller
                 'created_at' => Carbon::now()
     
             ]);
+            return response()->json(['success' => 'Item add to cart success'], 200);
          }
+    }
 
 
-      
+    public function cartcount($id) {
+        $validatecart = ProductCart::where('user_id',$id)->get();
+        $count = $validatecart->count();
+        return $count;
     }
 }
