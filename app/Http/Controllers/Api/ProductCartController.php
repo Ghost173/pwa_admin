@@ -62,4 +62,14 @@ class ProductCartController extends Controller
         $count = $validatecart->count();
         return $count;
     }
+
+
+
+    public function getcartitems($id) {
+        
+        $catartitems  = ProductCart::where('user_id',$id)->get();
+        return $catartitems;
+    }
+
+
 }
