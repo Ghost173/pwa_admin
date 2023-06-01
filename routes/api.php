@@ -101,3 +101,5 @@ Route::get('/reviewlists/{id}' , [ProductReviewController::class, 'getAllReviewL
 
 //product add to cart 
 Route::post('/addtocart' , [ProductCartController::class, 'addtocart']);
+Route::get('/cartcount/{id}' , [ProductCartController::class, 'cartcount']);
+Route::get('/getcartitems/{id}' , [ProductCartController::class, 'getcartitems']);
