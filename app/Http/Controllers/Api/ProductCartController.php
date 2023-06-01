@@ -7,6 +7,8 @@ use App\Models\productDetails;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Auth;
+
 class ProductCartController extends Controller
 {
     public function addtocart(Request $request) {
@@ -65,10 +67,100 @@ class ProductCartController extends Controller
 
 
 
-    public function getcartitems($id) {
+    public function getcartitems() {
+        $user = Auth::user();
         
-        $catartitems  = ProductCart::where('user_id',$id)->get();
+        $catartitems  = ProductCart::where('user_id',$user->id)->get();
         return $catartitems;
+    }
+
+
+
+    public function removecartitem($cart_id) {
+        $user = Auth::user();
+        if($user) {
+            $result = ProductCart::where('id',$cart_id)->where('user_id',$user->id)->delete();
+            return $result;
+        }else{
+            return response()->json(['error' => 'please login to continue this '], 409);
+        }
+        
+    }
+
+
+    public function cartitemplus($cart_id) {
+        $user = Auth::user();
+        if($user) {
+            $result = ProductCart::where('id',$cart_id)->where('user_id',$user->id)->first();
+            $checkProduct = ProductList::where('id',$result->product_id)->first();
+
+            if($result) {
+                $qty = $result->product_quantity + 1;
+                $price =   $checkProduct->product_price; 
+                $dis_price = $checkProduct->discount_price; 
+
+                if($dis_price =="na") {
+                    $total = $qty * $price;
+                    $update = ProductCart::where('id',$cart_id)->update(['product_quantity' => $qty, 'unit_price'=>$price , 'total_price' =>$total ]);
+                    return $update;
+                } else {
+                    $total = $qty * $dis_price;
+                    $update = ProductCart::where('id',$cart_id)->update(['product_quantity' => $qty, 'unit_price'=>$dis_price , 'total_price' =>$total ]);
+                    return $update;
+                }
+            
+            } else {
+                return response()->json(['error' => 'Fail to update cart items'], 403);
+            }
+
+
+            
+
+            return $result;
+        }else{
+            return response()->json(['error' => 'please login to continue this '], 409);
+        }
+    }
+
+
+
+    public function cartitemminus($cart_id) {
+        $user = Auth::user();
+        if($user) {
+            $result = ProductCart::where('id',$cart_id)->where('user_id',$user->id)->first();
+            $checkProduct = ProductList::where('id',$result->product_id)->first();
+
+            if($result) {
+                $qty = $result->product_quantity - 1;
+                $price =   $checkProduct->product_price; 
+                $dis_price = $checkProduct->discount_price; 
+
+                if($qty === 0) {
+                    $delete = ProductCart::where('id',$cart_id)->delete();
+                    return $delete;
+                }
+
+                if($dis_price =="na") {
+                    $total = $qty * $price;
+                    $update = ProductCart::where('id',$cart_id)->update(['product_quantity' => $qty, 'unit_price'=>$price , 'total_price' =>$total ]);
+                    return $update;
+                } else {
+                    $total = $qty * $dis_price;
+                    $update = ProductCart::where('id',$cart_id)->update(['product_quantity' => $qty, 'unit_price'=>$dis_price , 'total_price' =>$total ]);
+                    return $update;
+                }
+            
+            } else {
+                return response()->json(['error' => 'Fail to update cart items'], 403);
+            }
+
+
+            
+
+            return $result;
+        }else{
+            return response()->json(['error' => 'please login to continue this '], 409);
+        }
     }
 
 
