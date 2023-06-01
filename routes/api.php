@@ -102,4 +102,7 @@ Route::get('/reviewlists/{id}' , [ProductReviewController::class, 'getAllReviewL
 //product add to cart 
 Route::post('/addtocart' , [ProductCartController::class, 'addtocart']);
 Route::get('/cartcount/{id}' , [ProductCartController::class, 'cartcount']);
-Route::get('/getcartitems/{id}' , [ProductCartController::class, 'getcartitems']);
+Route::get('/getcartitems' , [ProductCartController::class, 'getcartitems'])->middleware('auth:api');
+Route::get('/removecartitem/{cart_id}' , [ProductCartController::class, 'removecartitem'])->middleware('auth:api');
+Route::get('/cartitemplus/{cart_id}' , [ProductCartController::class, 'cartitemplus'])->middleware('auth:api');
+Route::get('/cartitemminus/{cart_id}' , [ProductCartController::class, 'cartitemminus'])->middleware('auth:api');
