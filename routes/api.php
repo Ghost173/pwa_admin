@@ -14,6 +14,7 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\ProductReviewController;
 use App\Http\Controllers\Api\ProductCartController;
 
+use App\Http\Controllers\Api\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -106,3 +107,8 @@ Route::get('/getcartitems' , [ProductCartController::class, 'getcartitems'])->mi
 Route::get('/removecartitem/{cart_id}' , [ProductCartController::class, 'removecartitem'])->middleware('auth:api');
 Route::get('/cartitemplus/{cart_id}' , [ProductCartController::class, 'cartitemplus'])->middleware('auth:api');
 Route::get('/cartitemminus/{cart_id}' , [ProductCartController::class, 'cartitemminus'])->middleware('auth:api');
+
+
+
+//orders
+Route::post('/cartorders' , [OrderController::class, 'cartorders'])->middleware('auth:api');
