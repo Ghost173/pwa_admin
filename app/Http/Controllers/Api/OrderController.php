@@ -12,6 +12,8 @@ use Illuminate\Support\Carbon;
 use Auth;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
+use Mail;
+use App\Mail\CartOrders;
 
 
 class OrderController extends Controller
@@ -40,7 +42,7 @@ class OrderController extends Controller
             $order_date = date("d-m-y");
             $payment_id = $request->payment_id;
 
-            $sgetproducts = ProductCart::where('user_id',2)->get();
+            $sgetproducts = ProductCart::where('user_id',$user->id)->get();
 
             foreach($sgetproducts as $cartlistitems) {
                 $cartinsertdeleteresult = "";
@@ -58,7 +60,6 @@ class OrderController extends Controller
                     'product_code' => $cartlistitems->product_code,
                     'product_size' => $cartlistitems->product_size,
                     'product_color' => $cartlistitems->product_color,
-                    'product_name' => $cartlistitems->product_name,
                     'product_quantity' => $cartlistitems->product_quantity,
                     'product_unit_price' => $cartlistitems->unit_price,
                     'product_total_price' => $cartlistitems->total_price,
@@ -73,6 +74,21 @@ class OrderController extends Controller
                 ]);
                 if($insertOrder == 1) {
                     $resultdelete = ProductCart::where('id',$cartlistitems->id)->delete();
+                    $mailData = [
+                        'name' => $customer_name,
+                        'quantity' => $cartlistitems->product_quantity,
+                        'product_name' => $cartlistitems->product_name,
+                        'product_unit_price' => $cartlistitems->unit_price,
+                        'product_total_price' => $cartlistitems->total_price,
+                        'orderid' => $orderid,
+                 ];
+                    try {
+                    Mail::to($user->email)->send(new CartOrders($mailData));
+
+                    }catch(\Throwable $th) {
+
+                    }
+
                     if($resultdelete == 1) {
                         $cartinsertdeleteresult=1;
                     }else {
