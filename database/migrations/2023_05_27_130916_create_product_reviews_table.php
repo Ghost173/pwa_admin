@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('reviewer_name')->nullable();
             $table->string('reviewer_rating')->nullable();
             $table->text('reviewer_comments')->nullable();
-            $table->text('order_id')->nullable();
+            $table->string('order_id')->nullable();
             $table->string('status')->default(0);
             $table->timestamps();
         });
