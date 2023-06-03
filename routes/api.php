@@ -98,6 +98,7 @@ Route::get('/user' , [AuthController::class, 'user'])->middleware('auth:api');
 
 //reviews for products 
 Route::get('/reviewlists/{id}' , [ProductReviewController::class, 'getAllReviewList']);
+Route::post('/postreview' , [ProductReviewController::class, 'postreview']);
 
 
 //product add to cart 

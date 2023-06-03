@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
+            $table->string('product_id')->nullable();
             $table->string('user_id')->nullable();
             $table->string('order_id');
             $table->string('invoice_no')->nullable();
@@ -36,6 +37,7 @@ return new class extends Migration
             $table->string('customer_cancel_request')->default(0);
             $table->string('customer_cancel_reason')->nullable();
             $table->string('payment_id')->nullable();
+            $table->string('review')->default(0);
             $table->timestamps();
         });
     }

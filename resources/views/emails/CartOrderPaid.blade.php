@@ -65,25 +65,17 @@
 
         <h2>Hello, {{ $mailData['name'] }}!</h2>
         <p>Thank you for your order. Here are the details:</p>
-<hr>
+
         <div class="order-detail">
             <h4>Order ID: {{ $mailData['orderid'] }}</h4>
+            <h4>Payment ID: {{ $mailData['paymentid'] }}</h4>
+
             <p><i class="fa-solid fa-cart-shopping"></i>Product Name: {{ $mailData['product_name'] }} </p>
             <p><i class="fa-duotone fa-cubes"></i> Product Quantity: {{ $mailData['quantity'] }}</p>
-            <p><i class="fa-solid fa-square-dollar"></i> Product Unit Price: {{ $mailData['product_unit_price'] }} LKR
-            </p>
-            <p><i class="fa-solid fa-square-dollar"></i> Product Total Price: {{ $mailData['product_total_price'] }} LKR
-            </p>
+            <p><i class="fa-solid fa-square-dollar"></i> Product Unit Price: {{ $mailData['product_unit_price'] }} LKR</p>
+            <p><i class="fa-solid fa-square-dollar"></i> Product Total Price: {{ $mailData['product_total_price'] }} LKR</p>
             <p><i class="fa-solid fa-square-dollar"></i> Order Delivery Address: {{ $mailData['delivery_Address'] }}</p>
             <p><i class="fa-solid fa-square-dollar"></i> Order Receiver Mobile: {{ $mailData['receiver_mobile'] }}</p>
-
-<hr>
-
-            <h4>Bank Details</h4>
-            <p><strong>Bank Name:</strong> commercial bank </p>
-            <p><strong>Account Holder:</strong>Prakash</p>
-            <p><strong>Account Number:</strong> 123456789</p>
-            <p><strong>Branch:</strong> Wellawatta</p>
         </div>
     </div>
 

@@ -14,6 +14,8 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
 use Mail;
 use App\Mail\CartOrders;
+use App\Mail\CartOrderPaid;
+
 
 
 class OrderController extends Controller
@@ -50,6 +52,7 @@ class OrderController extends Controller
                 $invoicenumber = 'INV'  . Str::random(6);
                 $insertOrder = Orders::insert([
                     'user_id' => $user->id,
+                    'product_id' => $cartlistitems->product_id,
                     'order_id' => $orderid,
                     'invoice_no' => $invoicenumber,
                     'customer_name'=>$customer_name,
@@ -74,32 +77,54 @@ class OrderController extends Controller
                 ]);
                 if($insertOrder == 1) {
                     $resultdelete = ProductCart::where('id',$cartlistitems->id)->delete();
-                    $mailData = [
-                        'name' => $customer_name,
-                        'quantity' => $cartlistitems->product_quantity,
-                        'product_name' => $cartlistitems->product_name,
-                        'product_unit_price' => $cartlistitems->unit_price,
-                        'product_total_price' => $cartlistitems->total_price,
-                        'orderid' => $orderid,
-                        'receiver_mobile' => $customer_phone,
-                        'delivery_Address' => $customer_address,
-                        'order_time' => date("h:i:sa"),
-                        'order_date' => date("d-m-y"),
-                        
-                 ];
-                    try {
-                    Mail::to($user->email)->send(new CartOrders($mailData));
-
-                    }catch(\Throwable $th) {
+                    
+                    if($payment_method == "BT") {
+                        $mailData = [
+                            'name' => $customer_name,
+                            'quantity' => $cartlistitems->product_quantity,
+                            'product_name' => $cartlistitems->product_name,
+                            'product_unit_price' => $cartlistitems->unit_price,
+                            'product_total_price' => $cartlistitems->total_price,
+                            'orderid' => $orderid,
+                            'receiver_mobile' => $customer_phone,
+                            'delivery_Address' => $customer_address,
+                            'order_time' => date("h:i:sa"),
+                            'order_date' => date("d-m-y"),
+                            
+                     ];
+                        try {
+                        Mail::to($user->email)->send(new CartOrders($mailData));
+                        }catch(\Throwable $th) {
+                        }
+                    }else {
+                        $mailData = [
+                            'name' => $customer_name,
+                            'quantity' => $cartlistitems->product_quantity,
+                            'product_name' => $cartlistitems->product_name,
+                            'product_unit_price' => $cartlistitems->unit_price,
+                            'product_total_price' => $cartlistitems->total_price,
+                            'orderid' => $orderid,
+                            'receiver_mobile' => $customer_phone,
+                            'delivery_Address' => $customer_address,
+                            'order_time' => date("h:i:sa"),
+                            'order_date' => date("d-m-y"),
+                            'paymentid' => $payment_id
+                            
+                     ];
+                        try {
+                        Mail::to($user->email)->send(new CartOrderPaid($mailData));
+                        }catch(\Throwable $th) {
+                        }
 
                     }
+
 
                     if($resultdelete == 1) {
                         $cartinsertdeleteresult=1;
                     }else {
                         $cartinsertdeleteresult=0;
                     }
-                }
+                } // insert oder end here 
             }
             return $cartinsertdeleteresult;
         } else {
