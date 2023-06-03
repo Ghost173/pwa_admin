@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\AdminController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,3 +26,16 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
+
+
+Route::group(['prefix' => 'admin', 'middleware' =>['admin:admin']], function() {
+    Route::get('/login' , [AdminController::class, 'loginform' ]);
+    Route::post('/login' , [AdminController::class, 'store' ])->name('admin.login');
+
+});
+
+
+Route::middleware(['auth:sanctum,admin', 'verified'])->get('/admin/dashboard', function () {
+    return view('admin.index');
+})->name('admindashboard')->middleware('auth:admin');
