@@ -9,18 +9,18 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class ForgotPasswordMail extends Mailable
+class CartOrders extends Mailable
 {
     use Queueable, SerializesModels;
-
- 
 
     /**
      * Create a new message instance.
      */
-    public function __construct(public $token)
+
+     public $mailData;
+    public function __construct($mailData)
     {
-        
+        $this->mailData = $mailData;
     }
 
     /**
@@ -29,7 +29,7 @@ class ForgotPasswordMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Password Rest',
+            subject: 'Order Confirmation Details',
         );
     }
 
@@ -39,7 +39,7 @@ class ForgotPasswordMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'emails.forgetpasswordreset'
+            view: 'emails.CartOrder',
         );
     }
 

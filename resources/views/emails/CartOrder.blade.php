@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Thank You</title>
+    <title>Order Confirmation</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
@@ -32,17 +33,17 @@
             margin-bottom: 10px;
         }
 
-        .thank-you-message {
+        .order-detail {
             margin-top: 30px;
         }
 
-        .thank-you-message p {
-            margin-bottom: 15px;
-            font-size: 16px;
+        .order-detail h4 {
+            font-size: 18px;
+            margin-bottom: 10px;
         }
 
-        .thank-you-message p:last-child {
-            margin-bottom: 0;
+        .order-detail p {
+            margin-bottom: 5px;
         }
 
         .icon {
@@ -50,14 +51,22 @@
         }
     </style>
 </head>
+
 <body>
     <div class="container">
-        <h2>Hello, {{$name}}!</h2>
-        <div class="thank-you-message">
-            <p>Thank you for contacting us.</p>
-            <p>We appreciate your interest and will get back to you as soon as possible.</p>
-            <p>In the meantime, feel free to explore our website for more information.</p>
+        <h2>Hello, {{ $mailData['name'] }}!</h2>
+        <p>Thank you for your order. Here are the details:</p>
+
+        <div class="order-detail">
+            <h4>Order ID: {{ $mailData['orderid'] }}</h4>
+
+            <p><i class="fa-solid fa-cart-shopping"></i>Product Name: {{ $mailData['product_name'] }} </p>
+            <p><i class="fa-duotone fa-cubes"></i> Product Quantity: {{ $mailData['quantity'] }}</p>
+            <p><i class="fa-solid fa-square-dollar"></i> Product Unit Price: {{ $mailData['product_unit_price'] }} LKR</p>
+            <p><i class="fa-solid fa-square-dollar"></i> Product Total Price: {{ $mailData['product_total_price'] }} LKR</p>
         </div>
     </div>
+
 </body>
+
 </html>
