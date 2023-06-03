@@ -81,6 +81,11 @@ class OrderController extends Controller
                         'product_unit_price' => $cartlistitems->unit_price,
                         'product_total_price' => $cartlistitems->total_price,
                         'orderid' => $orderid,
+                        'receiver_mobile' => $customer_phone,
+                        'delivery_Address' => $customer_address,
+                        'order_time' => date("h:i:sa"),
+                        'order_date' => date("d-m-y"),
+                        
                  ];
                     try {
                     Mail::to($user->email)->send(new CartOrders($mailData));
@@ -100,12 +105,19 @@ class OrderController extends Controller
         } else {
             return response()->json(['error' => 'please login to continue this '], 409);
         }
-
-           
-
-     
     }
 
 
+
+    public function authuserorders() {
+        $user = Auth::user();
+
+        if($user) {
+            $getallorders = Orders::where('customer_email',$user->email)->orderBy('id','DESC')->get();
+            return $getallorders;
+        }else {
+            return response()->json(['error' => 'please login to continue this '], 409);
+        }
+    }
 
 }

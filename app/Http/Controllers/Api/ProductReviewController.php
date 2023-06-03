@@ -10,7 +10,7 @@ class ProductReviewController extends Controller
 {
     public function getAllReviewList(Request $request) {
         $product_id = $request->id;
-        $result = ProductReview::where('product_id', $product_id)->where('status',1)->orderBy('id','desc')->limit(3)->get();
+        $result = ProductReview::where('product_id', $product_id)->where('status',1)->orderBy('id','desc')->get();
         return $result;
     }
 }

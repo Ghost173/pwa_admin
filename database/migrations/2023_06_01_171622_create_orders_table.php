@@ -33,6 +33,8 @@ return new class extends Migration
             $table->string('order_date')->nullable();
             $table->string('order_time')->nullable();
             $table->string('order_status')->nullable();
+            $table->string('customer_cancel_request')->default(0);
+            $table->string('customer_cancel_reason')->nullable();
             $table->string('payment_id')->nullable();
             $table->timestamps();
         });

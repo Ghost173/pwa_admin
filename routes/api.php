@@ -112,3 +112,6 @@ Route::get('/cartitemminus/{cart_id}' , [ProductCartController::class, 'cartitem
 
 //orders
 Route::post('/cartorders' , [OrderController::class, 'cartorders'])->middleware('auth:api');
+
+//user profile data
+Route::get('/authuserorders' , [OrderController::class, 'authuserorders'])->middleware('auth:api');
