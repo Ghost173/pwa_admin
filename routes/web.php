@@ -30,7 +30,7 @@ Route::middleware([
 
 
 Route::group(['prefix' => 'admin', 'middleware' =>['admin:admin']], function() {
-    Route::get('/login' , [AdminController::class, 'loginform' ]);
+    Route::get('/login' , [AdminController::class, 'loginform' ])->name('admin.loginform');
     Route::post('/login' , [AdminController::class, 'store' ])->name('admin.login');
 
 });
@@ -39,3 +39,8 @@ Route::group(['prefix' => 'admin', 'middleware' =>['admin:admin']], function() {
 Route::middleware(['auth:sanctum,admin', 'verified'])->get('/admin/dashboard', function () {
     return view('admin.index');
 })->name('admindashboard')->middleware('auth:admin');
+
+
+Route::middleware(['auth:admin'])->group(function() {
+    Route::get('admin/logout' , [AdminController::class, 'destroy' ])->name('admin.logout');
+});
