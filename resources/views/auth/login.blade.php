@@ -1,4 +1,40 @@
-<x-guest-layout>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Redirect Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col-md-6 offset-md-3">
+                <h1 class="text-center">Welcome to the Redirect Page</h1>
+
+                <div class="card mt-4">
+                    <div class="card-body text-center">
+                        <p class="card-text">You will be redirected shortly...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Set the redirect URL
+        var redirectUrl = "{{ route('admin.loginform') }}";
+
+        // Function to perform the redirect
+        function redirect() {
+            window.location.href = redirectUrl;
+        }
+
+        // Call the redirect function immediately
+        redirect();
+    </script>
+</body>
+</html>
+
+{{-- <x-guest-layout>
     <x-authentication-card>
         <x-slot name="logo">
             <x-authentication-card-logo />
@@ -44,4 +80,4 @@
             </div>
         </form>
     </x-authentication-card>
-</x-guest-layout>
+</x-guest-layout> --}}

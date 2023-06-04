@@ -41,7 +41,7 @@ class AdminController extends Controller
     }
 
     public function loginform() {
-        return view('auth.login', ['guard' => 'admin']);
+        return view('admin.login.index', ['guard' => 'admin']);
     }
 
     /**
