@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\admin\AdminCRUCController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,8 +33,11 @@ Route::middleware([
 Route::group(['prefix' => 'admin', 'middleware' =>['admin:admin']], function() {
     Route::get('/login' , [AdminController::class, 'loginform' ])->name('admin.loginform');
     Route::post('/login' , [AdminController::class, 'store' ])->name('admin.login');
+ 
 
 });
+
+Route::get('/adminprofile' , [AdminCRUCController::class, 'adminprofile' ])->name('admin.profile')->middleware('auth:admin');
 
 
 Route::middleware(['auth:sanctum,admin', 'verified'])->get('/admin/dashboard', function () {

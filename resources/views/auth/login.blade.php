@@ -20,15 +20,12 @@
     </div>
 
     <script>
-        // Set the redirect URL
         var redirectUrl = "{{ route('admin.loginform') }}";
 
-        // Function to perform the redirect
         function redirect() {
             window.location.href = redirectUrl;
         }
 
-        // Call the redirect function immediately
         redirect();
     </script>
 </body>
