@@ -56,6 +56,18 @@ Route::middleware(['auth:admin'])->group(function() {
     Route::post('/admin/password/store' , [AdminCRUCController::class, 'adminpasswordstore' ])->name('admin.password.store');
 });
 
+
+
+//admin category related end points 
+Route::group(['prefix' => 'category', 'middleware' =>'auth:admin'], function() {
+    Route::get('all' , [AdminCategoryController::class, 'getallcategories' ])->name('admin.getcategories');
+    Route::get('add' , [AdminCategoryController::class, 'addcategory' ])->name('admin.addcategory');
+    Route::get('store' , [AdminCategoryController::class, 'storecategory' ])->name('admin.storecategory');
+    Route::get('edit/{id}' , [AdminCategoryController::class, 'editcategory' ])->name('admin.editcategory');
+    
+});
+
+
 // Route::get('/admin/profile' , [AdminCRUCController::class, 'adminprofile' ])->name('admin.profile')->middleware('auth:admin');
 // Route::get('/admin/profile/store' , [AdminCRUCController::class, 'adminprofile' ])->name('admin.profile.store')->middleware('auth:admin');
 

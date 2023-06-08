@@ -39,6 +39,7 @@
                             <div class="card">
                                 <div class="card-body">
                                     <div class="d-flex flex-column align-items-center text-center">
+                                        {{-- <img src={{$admindata->profile_photo_path}} /> --}}
                                         <img src="{{ !empty($admindata->profile_photo_path) ? url($admindata->profile_photo_path) : url('admin/assets/images/avatars/profile.jpg') }}"
                                             alt="Admin" class="rounded-circle p-1 bg-primary" width="110">
                                         <div class="mt-3">
