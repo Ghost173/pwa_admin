@@ -53,6 +53,7 @@ Route::group(['prefix' => 'admin', 'middleware' =>['admin:admin']], function() {
 Route::middleware(['auth:admin'])->group(function() {
     Route::get('/admin/profile' , [AdminCRUCController::class, 'adminprofile' ])->name('admin.profile');
     Route::post('/admin/profile/store' , [AdminCRUCController::class, 'adminprofilestore' ])->name('admin.profile.store');
+    Route::post('/admin/password/store' , [AdminCRUCController::class, 'adminpasswordstore' ])->name('admin.password.store');
 });
 
 // Route::get('/admin/profile' , [AdminCRUCController::class, 'adminprofile' ])->name('admin.profile')->middleware('auth:admin');
