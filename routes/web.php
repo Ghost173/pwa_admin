@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\admin\AdminCRUCController;
+use App\Http\Controllers\admin\AdminCategoryController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,6 +15,7 @@ use App\Http\Controllers\AdminController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -29,13 +33,6 @@ Route::middleware([
 
 
 
-Route::group(['prefix' => 'admin', 'middleware' =>['admin:admin']], function() {
-    Route::get('/login' , [AdminController::class, 'loginform' ])->name('admin.loginform');
-    Route::post('/login' , [AdminController::class, 'store' ])->name('admin.login');
-
-});
-
-
 Route::middleware(['auth:sanctum,admin', 'verified'])->get('/admin/dashboard', function () {
     return view('admin.index');
 })->name('admindashboard')->middleware('auth:admin');
@@ -44,3 +41,23 @@ Route::middleware(['auth:sanctum,admin', 'verified'])->get('/admin/dashboard', f
 Route::middleware(['auth:admin'])->group(function() {
     Route::get('admin/logout' , [AdminController::class, 'destroy' ])->name('admin.logout');
 });
+
+
+
+Route::group(['prefix' => 'admin', 'middleware' =>['admin:admin']], function() {
+    Route::get('/login' , [AdminController::class, 'loginform' ])->name('admin.loginform');
+    Route::post('/login' , [AdminController::class, 'store' ])->name('admin.login');
+ 
+});
+
+Route::middleware(['auth:admin'])->group(function() {
+    Route::get('/admin/profile' , [AdminCRUCController::class, 'adminprofile' ])->name('admin.profile');
+    Route::post('/admin/profile/store' , [AdminCRUCController::class, 'adminprofilestore' ])->name('admin.profile.store');
+});
+
+// Route::get('/admin/profile' , [AdminCRUCController::class, 'adminprofile' ])->name('admin.profile')->middleware('auth:admin');
+// Route::get('/admin/profile/store' , [AdminCRUCController::class, 'adminprofile' ])->name('admin.profile.store')->middleware('auth:admin');
+
+
+
+//Admin Category CRUD
