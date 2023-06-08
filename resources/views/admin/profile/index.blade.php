@@ -128,7 +128,7 @@
                                         @csrf
                                         <div class="row mb-3">
                                             <div class="col-sm-3">
-                                                <h6 class="mb-0">Full Name</h6>
+                                                <h6 class="mb-0">Full Name <span class="text-danger">*</span></h6>
                                             </div>
                                             <div class="col-sm-9 text-secondary">
                                                 <input type="text" name="name" class="form-control"
@@ -141,7 +141,7 @@
                                         </div>
                                         <div class="row mb-3">
                                             <div class="col-sm-3">
-                                                <h6 class="mb-0">Email</h6>
+                                                <h6 class="mb-0">Email <span class="text-danger">*</span></h6>
                                             </div>
                                             <div class="col-sm-9 text-secondary">
                                                 <input type="text" name="email" class="form-control"
@@ -153,10 +153,10 @@
                                         </div>
                                         <div class="row mb-3">
                                             <div class="col-sm-3">
-                                                <h6 class="mb-0">Phone</h6>
+                                                <h6 class="mb-0">Phone <span class="text-danger">*</span></h6>
                                             </div>
                                             <div class="col-sm-9 text-secondary">
-                                                <input type="number" name="phone" class="form-control" name="phone"
+                                                <input type="number" name="phone" class="form-control"
                                                     value={{ $admindata->phone }} />
                                                     @error('phone')
                                                     <span class="text text-danger">{{ $message }}</span>
@@ -187,8 +187,66 @@
                                         <div class="row">
                                             <div class="col-sm-3"></div>
                                             <div class="col-sm-9 text-secondary">
-                                                <input type="submit" class="btn btn-primary px-4"
+                                                <input type="submit" class="btn btn-primary px-4 float-end"
                                                     value="Save Changes" />
+                                            </div>
+                                        </div>
+                                    </form>
+
+
+                                </div>
+                            </div>
+
+
+                            <div class="card">
+                                <div class="card-body">
+
+                                    <form method="post" action="{{route('admin.password.store')}}" enctype="multipart/form-data">
+                                        @csrf
+                                        <div class="row mb-3">
+                                            <div class="col-sm-3">
+                                                <h6 class="mb-0">Current Password <span class="text-danger">*</span></h6>
+                                            </div>
+                                            <div class="col-sm-9 text-secondary">
+                                                <input  type="password" id="current_password" name="current_password" class="form-control"
+                                                    />
+                                                    @error('current_password')
+                                                    <span class="text text-danger">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                         
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="col-sm-3">
+                                                <h6 class="mb-0">New password <span class="text-danger">*</span></h6>
+                                            </div>
+                                            <div class="col-sm-9 text-secondary">
+                                                <input type="password" id="password" name="password" class="form-control"
+                                                    />
+                                                    @error('password')
+                                                    <span class="text text-danger">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="col-sm-3">
+                                                <h6 class="mb-0">Reenter New Password <span class="text-danger">*</span></h6>
+                                            </div>
+                                            <div class="col-sm-9 text-secondary">
+                                                <input type="password" id="password_confirmation"
+                                                name="password_confirmation" class="form-control"
+                                                    />
+                                                    @error('phone')
+                                                    <span class="text text-danger">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </div>
+
+                                        <div class="row ">
+                                            <div class="col-sm-3"></div>
+                                            <div class="col-sm-9 text-secondary ">
+                                                <button type="submit" class="btn btn-primary px-4 float-end"
+                                                    > Update Password</button>
                                             </div>
                                         </div>
                                     </form>
