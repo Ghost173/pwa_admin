@@ -24,7 +24,7 @@
                     <div class="card">
                         <div class="card-body">
 
-                            <form method="post" action="" enctype="multipart/form-data">
+                            <form method="post" action="{{route('admin.storecategory')}}" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row mb-3">
                                     <div class="col-sm-3">
@@ -49,8 +49,11 @@
                                             <div class="col-sm-8 text-secondary">
                                                 <input class="form-control" type="file" name="category_image" id="category_image"
                                                    onchange="catgegoryImage(this)" 
-                                                   required
+                                                   
                                                 >
+                                                @error('category_image')
+                                                <span class="text text-danger">{{ $message }}</span>
+                                            @enderror
                                             </div>
                                             <div class="col-sm-4 text-secondary">
                                                 <img src="" id="category_image_preview">
@@ -71,8 +74,11 @@
                                             <div class="col-sm-8 text-secondary">
                                                 <input class="form-control" type="file" name="category_icon" id="category_icon"
                                                    onchange="catgegoryIcon(this)" 
-                                                   required
+                                                   
                                                 >
+                                                @error('category_icon')
+                                                <span class="text text-danger">{{ $message }}</span>
+                                            @enderror
                                             </div>
                                             <div class="col-sm-4 text-secondary">
                                                 <img src="" id="category_icon_preview">

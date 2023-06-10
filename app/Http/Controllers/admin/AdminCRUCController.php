@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Validator;
 use Image;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Hash;
+use Storage;
+
 
 class AdminCRUCController extends Controller
 {
@@ -44,21 +46,33 @@ class AdminCRUCController extends Controller
 
         if($image) {
             $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
-            Image::make($image)->resize(110,110)->save('upload/profile/'.$name_gen);
-            $save_url = $geturl.'/upload/profile/'.$name_gen;
 
-            $oldimge = $admin->profile_photo_path;
-            if(file_exists($oldimge)) {
-                unlink($oldimge);
+        
+            $image = Image::make($image)->resize(110,110);
+            $tempPath = 'upload/profile/' . $name_gen ;
+            $image->save($tempPath);
+            $s3Path = 'upload/profile/';
+            $urlpath =  'upload/profile/' . $name_gen;
+            Storage::disk('s3')->putFileAs($s3Path, $tempPath,$name_gen);
+            unlink($tempPath);
+            $publicUrl = Storage::cloud('s3')->url($urlpath);
+            $s3_location =  'upload/profile/' . $name_gen;
+
+            if($admin->s3_location) {
+                $deleteImage = Storage::disk('s3')->delete($admin->s3_location);
             }
+           
 
             Admin::where('id',$admin->id)->update([
                 'name' => $name,
                 'email' => $email,
                 'phone' => $phone,
-                'profile_photo_path' => $save_url,
+                'profile_photo_path' => $publicUrl,
+                's3_location' => $s3_location,
                 'updated_at' => Carbon::now()
             ]);
+
+
 
             $notification = array(
                 'message' => 'profile updated successfully',
@@ -109,5 +123,14 @@ class AdminCRUCController extends Controller
             );
             return redirect()->back()->with($notification);
         }
+    }
+
+
+
+
+
+    public function testbucket() {
+        Storage::disk('s3')->put('filea.txt', 'Contents');
+        $image = $request->file('image');
     }
 }
