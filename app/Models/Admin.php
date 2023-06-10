@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Passport\HasApiTokens;
+use App\Models\Category;
 
 class Admin extends Authenticatable
 {
@@ -58,4 +59,6 @@ class Admin extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+  
 }

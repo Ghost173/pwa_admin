@@ -40,11 +40,12 @@ class AdminCRUCController extends Controller
         $email = $request->email;
         $phone = $request->phone;
         $image = $request->file('image');
+        $geturl = request()->getSchemeAndHttpHost();
 
         if($image) {
             $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
             Image::make($image)->resize(110,110)->save('upload/profile/'.$name_gen);
-            $save_url = 'upload/profile/'.$name_gen;
+            $save_url = $geturl.'/upload/profile/'.$name_gen;
 
             $oldimge = $admin->profile_photo_path;
             if(file_exists($oldimge)) {
