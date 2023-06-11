@@ -31,8 +31,7 @@
                                         <h6 class="mb-0">Category Name <span class="text-danger">*</span></h6>
                                     </div>
                                     <div class="col-sm-9 text-secondary">
-                                        <input type="text" name="category_name" class="form-control"
-                                             />
+                                        <input type="text" name="category_name" id="category_name" class="form-control"/>
                                             @error('category_name')
                                             <span class="text text-danger">{{ $message }}</span>
                                         @enderror
@@ -48,13 +47,13 @@
                                         <div class="row">
                                             <div class="col-sm-8 text-secondary">
                                                 <input class="form-control" type="file" name="category_image" id="category_image"
-                                                   onchange="catgegoryImage(this)" 
-                                                   
+                                                   onchange="catgegoryImage(this)"   
                                                 >
                                                 @error('category_image')
                                                 <span class="text text-danger">{{ $message }}</span>
-                                            @enderror
+                                                 @enderror
                                             </div>
+
                                             <div class="col-sm-4 text-secondary">
                                                 <img src="" id="category_image_preview">
                                             </div>
@@ -73,12 +72,12 @@
                                         <div class="row">
                                             <div class="col-sm-8 text-secondary">
                                                 <input class="form-control" type="file" name="category_icon" id="category_icon"
-                                                   onchange="catgegoryIcon(this)" 
-                                                   
-                                                >
+                                                   onchange="catgegoryIcon(this)" >
                                                 @error('category_icon')
                                                 <span class="text text-danger">{{ $message }}</span>
                                             @enderror
+
+
                                             </div>
                                             <div class="col-sm-4 text-secondary">
                                                 <img src="" id="category_icon_preview">
