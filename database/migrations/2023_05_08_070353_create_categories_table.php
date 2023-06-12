@@ -15,7 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('category_name');
             $table->string('category_image');
+            $table->string('category_image_s3_location')->nullable();
             $table->string('category_icon')->nullable();
+            $table->string('category_icon_s3_location')->nullable();
             $table->string('created_user')->nullable();
             $table->timestamps();
         });
