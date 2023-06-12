@@ -78,9 +78,8 @@ Route::group(['prefix' => 'category', 'middleware' =>'auth:admin'], function() {
 Route::group(['prefix' => 'subcategory', 'middleware' =>'auth:admin'], function() {
     Route::get('all' , [AdminSubCategoryController::class, 'getallsubcategories' ])->name('admin.getallsubcategories');
     Route::get('add' , [AdminSubCategoryController::class, 'addsubcategory' ])->name('admin.addsubcategory');
-
-
-
+    Route::post('store' , [AdminSubCategoryController::class, 'storesubcategory' ])->name('admin.storesubcategory');
+    Route::get('delete/{id}' , [AdminSubCategoryController::class, 'deletesubcategory' ])->name('admin.deletesubcategory');
 
 });
 

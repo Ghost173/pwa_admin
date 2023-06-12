@@ -33,7 +33,7 @@
                                                 style="color: rgb(231, 112, 1);" title="Edit"></i>
                                         </a>
 
-                                        <a href="" id="delete"><i class="fadeIn animated bx bx-trash bx-sm"
+                                        <a href="{{route('admin.deletesubcategory',$item->id )}}" id="delete"><i class="fadeIn animated bx bx-trash bx-sm"
                                                 style="color: rgb(231, 1, 1);" title="Delete"></i>
                                         </a>
                                     </td>

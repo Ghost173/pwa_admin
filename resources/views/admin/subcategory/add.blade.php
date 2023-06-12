@@ -22,15 +22,15 @@
                     <div class="card">
                         <div class="card-body">
 
-                            <form method="post" action="" enctype="multipart/form-data">
+                            <form method="post" action="{{route('admin.storesubcategory')}}" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row mb-3">
                                     <div class="col-sm-3">
                                         <h6 class="mb-0">Sub Category Name <span class="text-danger">*</span></h6>
                                     </div>
                                     <div class="col-sm-9 text-secondary">
-                                        <input type="text" name="category_name" id="category_name" class="form-control"/>
-                                            @error('category_name')
+                                        <input type="text" name="subcategory_name" id="subcategory_name" class="form-control"/>
+                                            @error('subcategory_name')
                                             <span class="text text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
@@ -44,12 +44,12 @@
                                     </div>
                                     <div class="col-sm-9 text-secondary">
                                         
-                                <select class="form-select mb-3" aria-label="Default select example">
+                                <select class="form-select mb-3" aria-label="Default select example" name="category_id">
                                     @foreach ($category as $item)
                                     <option value="{{$item->id}}">{{$item->category_name}}</option>   
                                     @endforeach
 								</select>
-                                            @error('category_name')
+                                            @error('category_id')
                                             <span class="text text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
