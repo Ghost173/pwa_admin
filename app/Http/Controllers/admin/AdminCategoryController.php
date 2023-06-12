@@ -11,7 +11,6 @@ use DB;
 use Illuminate\Support\Facades\Validator;
 use Image;
 use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\Hash;
 use Storage;
 
 
