@@ -64,8 +64,11 @@ Route::group(['prefix' => 'category', 'middleware' =>'auth:admin'], function() {
     Route::get('all' , [AdminCategoryController::class, 'getallcategories' ])->name('admin.getcategories');
     Route::get('add' , [AdminCategoryController::class, 'addcategory' ])->name('admin.addcategory');
     Route::post('store' , [AdminCategoryController::class, 'storecategory' ])->name('admin.storecategory');
-    Route::get('edit/{id}' , [AdminCategoryController::class, 'editcategory' ])->name('admin.editcategory');
     Route::get('delete/{id}' , [AdminCategoryController::class, 'deletecategory' ])->name('admin.deletecategory');
+    Route::get('edit/{id}' , [AdminCategoryController::class, 'editcategory' ])->name('admin.editcategory');
+    Route::post('updatecategoryName/{id}' , [AdminCategoryController::class, 'updatecategoryName' ])->name('admin.updatecategoryName');
+    Route::post('updatecategoryImage/{id}' , [AdminCategoryController::class, 'updatecategoryImage' ])->name('admin.updatecategoryImage');
+
 
 });
 
