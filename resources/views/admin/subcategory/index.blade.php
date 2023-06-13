@@ -29,7 +29,7 @@
                                     <td>{{ $item['categoryName']['category_name'] }}</td>
                                     <td>{{$productCount}}</td>
                                     <td>
-                                        <a href="" target="blank"><i class="fadeIn animated bx bx-edit bx-sm"
+                                        <a href="{{route('admin.editsubcategory', $item->id)}}" ><i class="fadeIn animated bx bx-edit bx-sm"
                                                 style="color: rgb(231, 112, 1);" title="Edit"></i>
                                         </a>
 

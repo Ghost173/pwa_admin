@@ -100,6 +100,10 @@ Route::get('/user' , [AuthController::class, 'user'])->middleware('auth:api');
 Route::get('/reviewlists/{id}' , [ProductReviewController::class, 'getAllReviewList']);
 Route::post('/postreview' , [ProductReviewController::class, 'postreview']);
 
+//request cancel order
+Route::post('/requestordercancel' , [ProductReviewController::class, 'requestordercancel']);
+
+
 
 //product add to cart 
 Route::post('/addtocart' , [ProductCartController::class, 'addtocart']);

@@ -14,6 +14,9 @@ use Auth;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
 use Mail;
+use App\Mail\Customercancelorder;
+use App\Models\User;
+
 
 class ProductReviewController extends Controller
 {
@@ -70,6 +73,67 @@ class ProductReviewController extends Controller
 
         } else {
             return response()->json(['error' => 'There are no orders found with in the database '], 409);
+        }
+
+    }
+
+
+
+    //requestorder camcel 
+    public function requestordercancel(Request $request) {
+        $user = Auth::user();
+        $validator = Validator::make($request->all(), [
+            'customer_cancel_reason' => 'required|string|max:255',
+            'order_id' => 'required|string',
+        ]);
+        if ($validator->fails())
+        {
+            return response(['errors'=>$validator->errors()->all()], 401);
+        }
+
+        $orderid = $request->order_id;
+        $customer_cancel_reason = $request->customer_cancel_reason;
+
+        $getorder = Orders::where('order_id',$orderid)->first();
+        $checkorderstatus = $getorder->customer_cancel_request;
+
+        if($getorder) {
+            if($checkorderstatus == 0) {
+               $cancelorder = Orders::where('id',$getorder->id)->update([
+                    'customer_cancel_reason' => $customer_cancel_reason,
+                    'customer_cancel_request' => 1,     
+                    'updated_at' => Carbon::now()         
+                ]);
+
+
+                $mailData = [
+                    'name' => $getorder->customer_name,
+                    'quantity' => $getorder->product_quantity,
+                    'product_name' => $getorder->product_name,
+                    'product_unit_price' => $getorder->product_unit_price,
+                    'product_total_price' => $getorder->product_total_price,
+                    'orderid' => $orderid,
+             ];
+             if($cancelorder == 1) {
+                $getorderuser = User::where('id',$getorder->user_id)->first();
+                $getorderuseremail =$getorderuser->email;
+
+                try {
+                    Mail::to($getorderuseremail)->send(new Customercancelorder($mailData));
+                    
+                    }catch(\Throwable $th) {
+
+                    }
+             }
+               
+
+                return response()->json(['success' => 'You cancel order request submit success'], 200);
+            } else {
+                return response()->json(['error' => 'You already request a cancel order'], 409); 
+            }
+
+        } else {
+            return response()->json(['error' => 'There are no orders found with in the database '], 409); 
         }
 
     }
