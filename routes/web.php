@@ -80,6 +80,9 @@ Route::group(['prefix' => 'subcategory', 'middleware' =>'auth:admin'], function(
     Route::get('add' , [AdminSubCategoryController::class, 'addsubcategory' ])->name('admin.addsubcategory');
     Route::post('store' , [AdminSubCategoryController::class, 'storesubcategory' ])->name('admin.storesubcategory');
     Route::get('delete/{id}' , [AdminSubCategoryController::class, 'deletesubcategory' ])->name('admin.deletesubcategory');
+    Route::get('edit/{id}' , [AdminSubCategoryController::class, 'editsubcategory' ])->name('admin.editsubcategory');
+    Route::post('updatesubcategoryName/{id}' , [AdminSubCategoryController::class, 'updatesubcategoryName' ])->name('admin.updatesubcategoryName');
+
 
 });
 

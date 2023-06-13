@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Order Confirmation</title>
+    <title>Order Cancellation Request</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
@@ -25,7 +25,7 @@
 
         h2 {
             font-size: 24px;
-            color: #333;
+            color: red; /* Updated color to red */
             margin-bottom: 20px;
         }
 
@@ -58,27 +58,19 @@
 
 <body>
     <div class="container">
-        <div class="order-time-date">
-            <p><strong>Order Date:</strong> {{ $mailData['order_date'] }}</p>
-            <p><strong>Order Time:</strong> {{ $mailData['order_time'] }}</p>
-        </div>
-
-        <h2>Hello, {{ $mailData['name'] }}!</h2>
-        <p style="color: green;">Thank you for your order. Here are the details:</p>
-
+        <h2 style="color: red;">Order Cancellation Request</h2>
+        <p>You have submitted a request to cancel your order.</p>
+        <hr>
         <div class="order-detail">
-            <h4>Order ID: {{ $mailData['orderid'] }}</h4>
-            <h4>Payment ID: {{ $mailData['paymentid'] }}</h4>
-
-            <p><i class="fa-solid fa-cart-shopping"></i>Product Name: {{ $mailData['product_name'] }} </p>
-            <p><i class="fa-duotone fa-cubes"></i> Product Quantity: {{ $mailData['quantity'] }}</p>
-            <p><i class="fa-solid fa-square-dollar"></i> Product Unit Price: {{ $mailData['product_unit_price'] }} LKR</p>
-            <p><i class="fa-solid fa-square-dollar"></i> Product Total Price: {{ $mailData['product_total_price'] }} LKR</p>
-            <p><i class="fa-solid fa-square-dollar"></i> Order Delivery Address: {{ $mailData['delivery_Address'] }}</p>
-            <p><i class="fa-solid fa-square-dollar"></i> Order Receiver Mobile: {{ $mailData['receiver_mobile'] }}</p>
+            <h4>Order Details:</h4>
+            <p><strong>Order ID:</strong> {{ $mailData['orderid'] }}</p>
+            <p><strong>Customer Name:</strong> {{ $mailData['name'] }}</p>
+            <p><strong>Product Name:</strong> {{ $mailData['product_name'] }}</p>
+            <p><strong>Product Quantity:</strong> {{ $mailData['quantity'] }}</p>
+            <p><strong>Product Unit Price:</strong> {{ $mailData['product_unit_price'] }}</p>
+            <p><strong>Product Total Price:</strong> {{ $mailData['product_total_price'] }}</p>
         </div>
     </div>
-
 </body>
 
 </html>

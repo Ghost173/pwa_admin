@@ -64,7 +64,7 @@
         </div>
 
         <h2>Hello, {{ $mailData['name'] }}!</h2>
-        <p>Thank you for your order. Here are the details:</p>
+        <p style="color: green;">Thank you for your order. Here are the details:</p>
 <hr>
         <div class="order-detail">
             <h4>Order ID: {{ $mailData['orderid'] }}</h4>

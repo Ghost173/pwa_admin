@@ -42,6 +42,7 @@ class AdminSubCategoryController extends Controller
         SubCategory::insert([[
             'subcategory_name' => $request->subcategory_name,
             'category_id' => $request->category_id,
+            'created_at' => Carbon::now()
         ]]);
 
         $notification = array(
@@ -52,7 +53,7 @@ class AdminSubCategoryController extends Controller
     }
 
 
-
+    // delete subcategory 
     public function deletesubcategory($id) {
         $subcategory = SubCategory::findorFail($id);
         $resultdelete = SubCategory::where('id',$id)->delete();
@@ -63,4 +64,40 @@ class AdminSubCategoryController extends Controller
         );
         return redirect()->route('admin.getallsubcategories')->with($notification);
     }
+
+
+    //edit subcategory page 
+    public function editsubcategory($id) {
+        $subcat = SubCategory::findorFail($id);
+        $category = Category::get();
+        return view('admin.subcategory.edit',compact('subcat', 'category'));
+    }
+
+
+    //update sub category 
+    public function updatesubcategoryName(Request $request, $id) {
+        $subcat = SubCategory::findorFail($id);
+
+        $validated = $request->validate( [
+            'subcategory_name' => 'required',
+            'category_id' => 'required',
+        ],
+        [
+            'subcategory_name.required' => 'Sub category name cant be empty',
+            'category_id.required' => 'Please select a category',
+        ]);
+
+        SubCategory::where('id',$id)->update([
+            'subcategory_name' => $request->subcategory_name,
+            'category_id' => $request->category_id,
+        ]);
+
+        $notification = array(
+            'message' => 'Sub Category was update successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('admin.getallsubcategories')->with($notification);
+
+    }
+
 }
