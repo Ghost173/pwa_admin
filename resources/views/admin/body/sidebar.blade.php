@@ -33,18 +33,29 @@
                 </li>
                 <li> <a href="{{route('admin.getcategories')}}"><i class="bx bx-right-arrow-alt"></i>All Categoryies</a>
                 </li>
-                <li> <a href="app-file-manager.html"><i class="bx bx-right-arrow-alt"></i>File Manager</a>
-                </li>
-                <li> <a href="app-contact-list.html"><i class="bx bx-right-arrow-alt"></i>Contatcs</a>
-                </li>
-                <li> <a href="app-to-do.html"><i class="bx bx-right-arrow-alt"></i>Todo List</a>
-                </li>
-                <li> <a href="app-invoice.html"><i class="bx bx-right-arrow-alt"></i>Invoice</a>
-                </li>
-                <li> <a href="app-fullcalender.html"><i class="bx bx-right-arrow-alt"></i>Calendar</a>
                 </li>
             </ul>
         </li>
+
+        {{-- // sub category  --}}
+        <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class="bx bx-category"></i>
+                </div>
+                <div class="menu-title">SubCategory</div>
+            </a>
+            <ul>
+                <li> <a href="{{route('admin.getallsubcategories')}}"><i class="bx bx-right-arrow-alt"></i>All SubCategory</a>
+                </li>
+                <li> <a href="{{route('admin.addsubcategory')}}"><i class="bx bx-right-arrow-alt"></i>Add SubCategory</a>
+                </li>
+                </li>
+            </ul>
+        </li>
+        {{-- Sub category section end  --}}
+
+
+
         <li class="menu-label">UI Elements</li>
         <li>
             <a href="widgets.html">

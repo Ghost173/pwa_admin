@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\admin\AdminCRUCController;
 use App\Http\Controllers\admin\AdminCategoryController;
+use App\Http\Controllers\admin\AdminSubCategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -73,9 +74,12 @@ Route::group(['prefix' => 'category', 'middleware' =>'auth:admin'], function() {
 });
 
 
-// Route::get('/admin/profile' , [AdminCRUCController::class, 'adminprofile' ])->name('admin.profile')->middleware('auth:admin');
-// Route::get('/admin/profile/store' , [AdminCRUCController::class, 'adminprofile' ])->name('admin.profile.store')->middleware('auth:admin');
+//admin category related end points 
+Route::group(['prefix' => 'subcategory', 'middleware' =>'auth:admin'], function() {
+    Route::get('all' , [AdminSubCategoryController::class, 'getallsubcategories' ])->name('admin.getallsubcategories');
+    Route::get('add' , [AdminSubCategoryController::class, 'addsubcategory' ])->name('admin.addsubcategory');
+    Route::post('store' , [AdminSubCategoryController::class, 'storesubcategory' ])->name('admin.storesubcategory');
+    Route::get('delete/{id}' , [AdminSubCategoryController::class, 'deletesubcategory' ])->name('admin.deletesubcategory');
 
+});
 
-
-//Admin Category CRUD

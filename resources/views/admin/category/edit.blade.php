@@ -79,7 +79,6 @@
                                             <div class="col-sm-4 text-secondary">
                                                 <img src="{{$category->category_image}}" id="category_image_preview">
                                             </div>
-
                                         </div>
 
                                     </div>
