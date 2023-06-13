@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\admin\AdminCRUCController;
 use App\Http\Controllers\admin\AdminCategoryController;
 use App\Http\Controllers\admin\AdminSubCategoryController;
+use App\Http\Controllers\admin\SliderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -86,3 +87,16 @@ Route::group(['prefix' => 'subcategory', 'middleware' =>'auth:admin'], function(
 
 });
 
+// home page slider 
+Route::group(['prefix' => 'slider', 'middleware' =>'auth:admin'], function() {
+    Route::get('all' , [SliderController::class, 'getallsliders' ])->name('admin.getallsliders');
+    Route::get('add' , [SliderController::class, 'addslider' ])->name('admin.addslider');
+    Route::post('store' , [SliderController::class, 'storeslider' ])->name('admin.storeslider');
+    Route::get('delete/{id}' , [SliderController::class, 'deleteslider' ])->name('admin.deleteslider');
+
+    Route::get('active/{id}' , [SliderController::class, 'activeslider' ])->name('admin.activeslider');
+
+    Route::get('deactive/{id}' , [SliderController::class, 'deactiveslider' ])->name('admin.deactiveslider');
+
+
+});

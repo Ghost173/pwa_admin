@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('slider_image');
             $table->string('slider_status')->default(1);
+            $table->string('slider_s3_location')->nullable();
             $table->string('created_by')->nullable();
             $table->timestamps();
         });
