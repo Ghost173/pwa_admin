@@ -76,6 +76,12 @@ class OrderController extends Controller
                     'created_at' => Carbon::now()
                 ]);
                 if($insertOrder == 1) {
+
+                    $getorderproduct = ProductList::where('id',$cartlistitems->product_id)->first();
+                    $update_qtu = $getorderproduct->product_qty - $cartlistitems->product_quantity;
+                    
+                    $product_qty_update = ProductList::where('id',$cartlistitems->product_id)->update(['product_qty' => $update_qtu]);
+
                     $resultdelete = ProductCart::where('id',$cartlistitems->id)->delete();
                     
                     if($payment_method == "BT") {
