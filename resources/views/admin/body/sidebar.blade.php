@@ -70,6 +70,25 @@
         {{-- sliders --}}
 
 
+         {{-- // Products  --}}
+         <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class="fadeIn animated bx bx-store"></i>
+                </div>
+                <div class="menu-title">Products</div>
+            </a>
+            <ul>
+                <li> <a href=""><i class="bx bx-right-arrow-alt"></i>Add Product</a>
+                </li>
+                <li> <a href="{{route('admin.getallproducts')}}"><i class="bx bx-right-arrow-alt"></i>All Products</a>
+                </li>
+                </li>
+            </ul>
+        </li>
+        {{-- Products section end  --}}
+
+
+        
 
         <li class="menu-label">UI Elements</li>
         <li>

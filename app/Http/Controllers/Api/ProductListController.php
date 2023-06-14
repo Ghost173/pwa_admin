@@ -95,10 +95,10 @@ class ProductListController extends Controller
 
     public function suggestproducts($product_id) {
         $product = ProductList::where('id',$product_id)->first();
+        ProductList::where('id',$product_id)->increment('product_view');
         $product_catgeory_id = $product->product_category_id;
         $suggest_products = ProductList::where('product_category_id',$product_catgeory_id)->
             inRandomOrder()->limit(6)->get();
-
         return($suggest_products);
     }
 
