@@ -53,6 +53,21 @@
             </ul>
         </li>
         {{-- Sub category section end  --}}
+        
+        <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class='fadeIn animated bx bx-merge'></i>
+                </div>
+                <div class="menu-title">Sliders</div>
+            </a>
+            <ul>
+                <li> <a href="{{route('admin.getallsliders')}}"><i class="bx bx-right-arrow-alt"></i>All Sliders</a>
+                </li>
+                <li> <a href="{{route('admin.addslider')}}"><i class="bx bx-right-arrow-alt"></i>Add Sliders</a>
+                </li>
+            </ul>
+        </li>
+        {{-- sliders --}}
 
 
 
