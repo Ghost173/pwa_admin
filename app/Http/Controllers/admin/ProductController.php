@@ -20,7 +20,7 @@ class ProductController extends Controller
     
     // get all products and return to view 
     public function getallproducts() {
-        $products  = ProductList::latest()->get();
+        $products  = ProductList::latest()->paginate(10);
         return  view('admin.products.index',compact('products'));
     }
 
