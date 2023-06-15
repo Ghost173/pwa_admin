@@ -1,6 +1,18 @@
 @extends('admin.admin_master')
 
 @section('admin')
+
+<style>
+
+    .deleteIcon:hover i {
+        color: red; /* Change the color to the desired hover color */
+    }
+
+    .editIcon:hover i {
+        color: orange; /* Change the color to the desired hover color */
+    }
+</style>
+
     <div class="page-wrapper">
         <div class="page-content">
             <div class="card">
@@ -35,13 +47,10 @@
                                     <td>{{ $item['userName']['name'] }}</td>
                                     <td>{{$productCount}}</td>
                                     <td>
-                                        <a href="{{route('admin.editcategory',$item->id)}}" target="blank"><i class="fadeIn animated bx bx-edit bx-sm"
-                                                style="color: rgb(231, 112, 1);" title="Edit"></i>
-                                        </a>
-
-                                        <a href="{{route('admin.deletecategory',$item->id)}}" id="delete"><i class="fadeIn animated bx bx-trash bx-sm"
-                                                style="color: rgb(231, 1, 1);" title="Delete"></i>
-                                        </a>
+                                        <div class="d-flex order-actions">
+                                            <a href="{{route('admin.editcategory',$item->id)}}" class="ms-2 editIcon"><i class="bx bxs-edit"></i></a>
+                                            <a href="{{route('admin.deletecategory',$item->id)}}" id="delete" class="ms-2 deleteIcon"><i class="bx bxs-trash" ></i></a>
+                                        </div>
                                     </td>
                                 </tr>
                             @endforeach

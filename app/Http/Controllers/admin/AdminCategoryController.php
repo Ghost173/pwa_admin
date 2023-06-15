@@ -19,8 +19,6 @@ class AdminCategoryController extends Controller
 
     public function getallcategories () {
         $allcategories = Category::orderBy('id','desc')->paginate(10);
-        $geturl =request()->getHttpHost();
-
         return view('admin.category.index',compact('allcategories'));
     }
 
@@ -92,7 +90,7 @@ class AdminCategoryController extends Controller
      //delete category 
      public function deletecategory($id) {
         $category = Category::findorFail($id);
-
+        
         //delete category images from S3
         if($category->category_image_s3_location) {
             $deleteImage = Storage::disk('s3')->delete($category->category_image_s3_location);

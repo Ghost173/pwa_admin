@@ -102,6 +102,10 @@ Route::group(['prefix' => 'slider', 'middleware' =>'auth:admin'], function() {
 // products
 Route::group(['prefix' => 'product', 'middleware' =>'auth:admin'], function() {
     Route::get('all' , [ProductController::class, 'getallproducts' ])->name('admin.getallproducts');
+    Route::get('activate/{id}' , [ProductController::class, 'activateproduct' ])->name('admin.activateproduct');
+    Route::get('deactivate/{id}' , [ProductController::class, 'deactivateproduct' ])->name('admin.deactivateproduct');
+
+
 
 });
 

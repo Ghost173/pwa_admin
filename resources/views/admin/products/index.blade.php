@@ -41,7 +41,7 @@
                                 <th scope="col">Product Category</th>
                                 <th scope="col">Product Viwes</th>
                                 <th scope="col">Product Qty</th>
-                                <th scope="col">Product Status</th>
+                                <th scope="col">Product Status </th>
                                 <th scope="col">Product Price</th>
                                 <th scope="col">Actions</th>
                             </tr>
@@ -95,12 +95,12 @@
                                     <td>
                                         <div class="d-flex order-actions">
                                             @if($item->product_status == 1)
-                                                <a href="" class="ms-2"><i class="bx bx-dislike" title="Deactive"></i></a>
+                                                <a href="{{route('admin.deactivateproduct', $item->id)}}" class="ms-2"><i class="bx bx-dislike" title="Makrk this product as inactive"></i></a>
                                             @else
-                                            <a href="" class="ms-2"><i class="bx bx-like" title="Delete"></i></a>
+                                            <a href="{{route('admin.activateproduct', $item->id)}}" class="ms-2"><i class="bx bx-like" title="Makrk this product as active"></i></a>
                                             @endif
                                             <a href="" class="ms-2 editIcon"><i class="bx bxs-edit"></i></a>
-                                            <a href="" class="ms-2 deleteIcon"><i class="bx bxs-trash"></i></a>
+                                            <a href="" class="ms-2 deleteIcon"><i class="bx bxs-trash" id="delete"></i></a>
                                         </div>
                                     </td>
                                    
