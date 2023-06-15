@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('product_price');
             $table->string('discount_price')->nullable();
             $table->string('product_image');
+            $table->string('product_image_s3_location')->nullable();
             $table->string('product_category_id')->nullable();
             $table->string('product_subcategory_id')->nullable();
             $table->string('product_brand')->nullable();
@@ -26,7 +27,7 @@ return new class extends Migration
             $table->string('product_status')->default(1);
             $table->string('product_add_user')->nullable();
             $table->string('product_qty')->nullable();
-            $table->string('product_view')->nullable();
+            $table->string('product_view')->default(1);
             $table->string('product_collection')->default(0);
             $table->string('Feature_product')->default(0);
             $table->timestamps();

@@ -17,4 +17,5 @@ class ProductList extends Model
     public function catgeory(){
         return $this->belongsTo(Category::class, 'product_category_id', 'id');
     }
+
 }

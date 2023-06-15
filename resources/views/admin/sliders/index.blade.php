@@ -38,16 +38,16 @@
                                     <td>
                                         @if($item->slider_status == 1)
                                         <a href="{{route('admin.deactiveslider',$item->id)}}"><i class="fadeIn animated bx bx-dislike bx-sm"
-                                            style="color: rgb(231, 74, 1);" title="Delete"></i>
+                                            style="color: rgb(231, 74, 1);" title="Deactive"></i>
                                     </a>
                                         @else 
                                         <a href="{{route('admin.activeslider',$item->id)}}"><i class="fadeIn animated bx bx-like bx-sm "
                                             style="color: rgb(1, 170, 43);" title="Delete"></i>
-                                    </a>
+                                        </a>
                                         &nbsp;   
                                         @endif
                                         <a href="{{route('admin.deleteslider',$item->id)}}" id="delete"><i class="fadeIn animated bx bx-trash bx-sm"
-                                                style="color: rgb(231, 1, 1);" title="Delete"></i>
+                                                style="color: rgb(231, 1, 1);" title="Active"></i>
                                         </a>
                                     </td>
                                 </tr>
