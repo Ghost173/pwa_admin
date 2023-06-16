@@ -78,7 +78,7 @@
                 <div class="menu-title">Products</div>
             </a>
             <ul>
-                <li> <a href=""><i class="bx bx-right-arrow-alt"></i>Add Product</a>
+                <li> <a href="{{route('admin.addproduct')}}"><i class="bx bx-right-arrow-alt"></i>Add Product</a>
                 </li>
                 <li> <a href="{{route('admin.getallproducts')}}"><i class="bx bx-right-arrow-alt"></i>All Products</a>
                 </li>
