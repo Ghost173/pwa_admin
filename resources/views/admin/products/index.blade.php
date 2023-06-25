@@ -11,6 +11,13 @@
     .editIcon:hover i {
         color: orange; /* Change the color to the desired hover color */
     }
+    .dislikeIcon:hover i {
+        color: blue; 
+    }
+    .likeIcon:hover i {
+        color: blue; 
+    }
+
 </style>
 
     <div class="page-wrapper">
@@ -95,9 +102,9 @@
                                     <td>
                                         <div class="d-flex order-actions">
                                             @if($item->product_status == 1)
-                                                <a href="{{route('admin.deactivateproduct', $item->id)}}" class="ms-2"><i class="bx bx-dislike" title="Makrk this product as inactive"></i></a>
+                                                <a href="{{route('admin.deactivateproduct', $item->id)}}" class="ms-2 dislikeIcon" ><i class="bx bx-dislike" title="Makrk this product as inactive"></i></a>
                                             @else
-                                            <a href="{{route('admin.activateproduct', $item->id)}}" class="ms-2"><i class="bx bx-like" title="Makrk this product as active"></i></a>
+                                            <a href="{{route('admin.activateproduct', $item->id)}}" class="ms-2 likeIcon"><i class="bx bx-like" title="Makrk this product as active"></i></a>
                                             @endif
                                             <a href="" class="ms-2 editIcon"><i class="bx bxs-edit"></i></a>
                                             <a href="{{route('admin.deleteproduct',$item->id)}}" id="delete" class="ms-2 deleteIcon"><i class="bx bxs-trash"></i></a>
