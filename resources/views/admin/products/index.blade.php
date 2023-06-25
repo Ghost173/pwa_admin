@@ -100,7 +100,7 @@
                                             <a href="{{route('admin.activateproduct', $item->id)}}" class="ms-2"><i class="bx bx-like" title="Makrk this product as active"></i></a>
                                             @endif
                                             <a href="" class="ms-2 editIcon"><i class="bx bxs-edit"></i></a>
-                                            <a href="" class="ms-2 deleteIcon"><i class="bx bxs-trash" id="delete"></i></a>
+                                            <a href="{{route('admin.deleteproduct',$item->id)}}" id="delete" class="ms-2 deleteIcon"><i class="bx bxs-trash"></i></a>
                                         </div>
                                     </td>
                                    

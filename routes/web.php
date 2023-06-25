@@ -105,6 +105,8 @@ Route::group(['prefix' => 'product', 'middleware' =>'auth:admin'], function() {
     Route::get('activate/{id}' , [ProductController::class, 'activateproduct' ])->name('admin.activateproduct');
     Route::get('deactivate/{id}' , [ProductController::class, 'deactivateproduct' ])->name('admin.deactivateproduct');
     Route::get('add' , [ProductController::class, 'addproduct' ])->name('admin.addproduct');
+    Route::post('store' , [ProductController::class, 'storeproduct' ])->name('admin.storeproduct');
+    Route::get('delete/{id}' , [ProductController::class, 'deleteproduct' ])->name('admin.deleteproduct');
 
    
 

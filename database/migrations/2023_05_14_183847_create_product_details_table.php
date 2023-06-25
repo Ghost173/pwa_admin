@@ -15,9 +15,13 @@ return new class extends Migration
             $table->id();
             $table->integer('product_id');
             $table->string('image_one')->nullable();
+            $table->string('image_one_s3')->nullable();
             $table->string('image_two')->nullable();
+            $table->string('image_two_s3')->nullable();
             $table->string('image_three')->nullable();
+            $table->string('image_three_s3')->nullable();
             $table->string('image_four')->nullable();
+            $table->string('image_four_s3')->nullable();
             $table->string('product_short_description')->nullable();
             $table->string('product_long_description')->nullable();
             $table->string('product_color')->nullable();
