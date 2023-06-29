@@ -98,9 +98,9 @@
             <ul>
                 <li> <a href="{{route('admin.getallpendongorders')}}"><i class="bx bx-right-arrow-alt"></i>Peding Orders</a>
                 </li>
-                <li> <a href="icons-boxicons.html"><i class="bx bx-right-arrow-alt"></i>Processing Orders</a>
+                <li> <a href="{{route('admin.getallprocessingoders')}}"><i class="bx bx-right-arrow-alt"></i>Processing Orders</a>
                 </li>
-                <li> <a href="icons-feather-icons.html"><i class="bx bx-right-arrow-alt"></i>Complete Orders</a>
+                <li> <a href="{{route('admin.getallcompleteorders')}}"><i class="bx bx-right-arrow-alt"></i>Complete Orders</a>
                 </li>
             </ul>
         </li>

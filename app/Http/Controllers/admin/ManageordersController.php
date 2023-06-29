@@ -23,4 +23,14 @@ class ManageordersController extends Controller
         $pendingorders = Orders::where('order_status' , 'Pending')->orderBy('id', 'DESC')->get();
         return view('admin.orders.pendingorder' ,compact('pendingorders'));
     }
+
+    public function getallprocessingoders () {
+        $Processingorders = Orders::where('order_status' , 'Processing')->orderBy('id', 'DESC')->get();
+        return view('admin.orders.processingorder' ,compact('Processingorders'));
+    }
+
+    public function getallcompleteorders () {
+        $completeorders = Orders::where('order_status' , 'Complete')->orderBy('id', 'DESC')->get();
+        return view('admin.orders.completeorder' ,compact('completeorders'));
+    }
 }
