@@ -88,9 +88,25 @@
         {{-- Products section end  --}}
 
 
+        {{-- Orders --}}
+        <li>
+            <a class="has-arrow" href="javascript:;">
+                <div class="parent-icon"> <i class="bx bx-donate-blood"></i>
+                </div>
+                <div class="menu-title">Orders</div>
+            </a>
+            <ul>
+                <li> <a href="{{route('admin.getallpendongorders')}}"><i class="bx bx-right-arrow-alt"></i>Peding Orders</a>
+                </li>
+                <li> <a href="icons-boxicons.html"><i class="bx bx-right-arrow-alt"></i>Processing Orders</a>
+                </li>
+                <li> <a href="icons-feather-icons.html"><i class="bx bx-right-arrow-alt"></i>Complete Orders</a>
+                </li>
+            </ul>
+        </li>
         
 
-        <li class="menu-label">UI Elements</li>
+        {{-- <li class="menu-label">UI Elements</li>
         <li>
             <a href="widgets.html">
                 <div class="parent-icon"><i class='bx bx-cookie'></i>
@@ -360,7 +376,7 @@
                 </div>
                 <div class="menu-title">Support</div>
             </a>
-        </li>
+        </li> --}}
     </ul>
     <!--end navigation-->
 </div>
