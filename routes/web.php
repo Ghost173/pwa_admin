@@ -116,6 +116,7 @@ Route::group(['prefix' => 'orders', 'middleware' =>'auth:admin'], function() {
     Route::get('pendingoders' , [ManageordersController::class, 'getpendingorders' ])->name('admin.getallpendongorders');
     Route::get('processingoders' , [ManageordersController::class, 'getallprocessingoders' ])->name('admin.getallprocessingoders');
     Route::get('completeorders' , [ManageordersController::class, 'getallcompleteorders' ])->name('admin.getallcompleteorders');
+    Route::get('oderdetails/{id}' , [ManageordersController::class, 'oderdetailsbyid' ])->name('admin.orderdetailsbyid');
 });
 
 Route::get('category/subcategory/ajax/{product_category_id}' , [ProductController::class, 'categorysub' ]);

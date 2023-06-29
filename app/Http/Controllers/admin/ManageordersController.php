@@ -33,4 +33,9 @@ class ManageordersController extends Controller
         $completeorders = Orders::where('order_status' , 'Complete')->orderBy('id', 'DESC')->get();
         return view('admin.orders.completeorder' ,compact('completeorders'));
     }
+
+    public function oderdetailsbyid($id) {
+        $getorders = Orders::where('id' , $id)->first();
+        return view('admin.orders.orderdetails' ,compact('getorders'));
+    }
 }
