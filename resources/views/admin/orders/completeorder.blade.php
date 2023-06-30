@@ -42,7 +42,7 @@
                                 <th scope="col">Order Id</th>
                                 <th scope="col">Customer Name</th>
                                 <th scope="col">Product Quantity</th>
-                                <th scope="col">Order Date </th>
+                                <th scope="col">Completed Date </th>
                                 <th scope="col">Order Status </th>
                                 <th scope="col">Actions</th>
                             </tr>
@@ -64,11 +64,11 @@
                                     <td scope="row">{{$item->order_id}}</td>
                                     <td scope="row">{{$item->customer_name}}</td>
                                     <td scope="row">{{$item->product_quantity}}</td>
-                                    <td scope="row">{{$item->order_date}}</td>
+                                    <td scope="row">{{Carbon\Carbon::parse($item->updated_at)->diffForHumans()}}</td>
                                     <td scope="row"><div class="badge rounded-pill bg-light-success text-success w-100">Complete</div></td>
                                    
                                     <td>
-                                            <a href="" class="btn btn-primary px-5 radius-30">details</a>
+                                        <a href="{{route('admin.orderdetailsbyid', $item->id)}}" class="btn btn-primary px-3 ">details</a>
                                     </td>
                                 </tr>
                             @endforeach

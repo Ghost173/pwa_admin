@@ -14,6 +14,8 @@ use App\Models\ProductReview;
 use App\Models\ProductCart;
 use Auth;
 use DB;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Validator;
 
 class ManageordersController extends Controller
 {
@@ -37,5 +39,68 @@ class ManageordersController extends Controller
     public function oderdetailsbyid($id) {
         $getorders = Orders::where('id' , $id)->first();
         return view('admin.orders.orderdetails' ,compact('getorders'));
+    }
+
+
+    public function pendingtoprocessing($id) {
+        $order = Orders::findorFail($id)->update([
+            'order_status' => 'Processing',
+            'updated_at' => Carbon::now(),   
+        ]);
+
+        $notification = array(
+            'message' => 'Order move to Processing',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('admin.getallpendongorders')->with($notification);
+    }
+
+
+    public function processingtoconfirm($id) {
+        $order = Orders::findorFail($id)->update([
+            'order_status' => 'Complete',
+            'updated_at' => Carbon::now(),   
+        ]);
+
+        $notification = array(
+            'message' => 'Order mark as Complete',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('admin.getallprocessingoders')->with($notification);
+    }
+
+
+    public function confirmtocancel($id) {
+        $order = Orders::findorFail($id)->update([
+            'order_status' => 'Cancel',
+            'updated_at' => Carbon::now(),   
+        ]);
+
+        $notification = array(
+            'message' => 'Order mark as Cancel',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('admin.orderdetailsbyid')->with($notification);
+    }
+
+
+    public function updatepaymentid(Request $request, $id) {
+        $validated = $request->validate( [
+            'payment_id' => 'required',
+        ],
+        [
+            'payment_id.required' => 'Please enter payment id',
+
+        ]);
+
+        $order = Orders::findorFail($id)->update([
+            'payment_id' => $request->payment_id
+        ]);
+
+        $notification = array(
+            'message' => 'Payment id hasbeen updated',
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
     }
 }
