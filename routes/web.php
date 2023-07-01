@@ -9,6 +9,7 @@ use App\Http\Controllers\admin\SliderController;
 use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\admin\ManageordersController;
 use App\Http\Controllers\admin\ReviewController;
+use App\Http\Controllers\admin\MessagesController;
 
 
 /*
@@ -132,10 +133,15 @@ Route::group(['prefix' => 'review', 'middleware' =>'auth:admin'], function() {
     Route::get('allapprovedreview' , [ReviewController::class, 'allapprovedreview' ])->name('admin.allapprovedreviews');
     Route::get('approvereview/{id}' , [ReviewController::class, 'approvereview' ])->name('admin.approvereview');
     Route::get('markaspending/{id}' , [ReviewController::class, 'deactivereview' ])->name('admin.deactivereview');
+});
 
 
+// Contact us
+Route::group(['prefix' => 'contactus', 'middleware' =>'auth:admin'], function() {
+    Route::get('get/messages' , [MessagesController::class, 'getallmessges' ])->name('admin.getallmessges');
 
 });
+
 
 
 Route::get('category/subcategory/ajax/{product_category_id}' , [ProductController::class, 'categorysub' ]);

@@ -107,8 +107,8 @@
             </ul>
         </li>
         {{-- order end here --}}
-
-
+   
+{{-- review --}}
         <li>
             <a class="has-arrow" href="javascript:;">
                 <div class="parent-icon"> <i class="bx bx-star"></i>
@@ -123,6 +123,21 @@
                 </li>
             </ul>
         </li>
+{{-- review end--}}
+
+      {{-- contact us messages --}}
+        <li>
+            <a class="has-arrow" href="javascript:;">
+                <div class="parent-icon"> <i class="bx bx-message-detail"></i>
+                </div>
+                <div class="menu-title">Messages</div>
+            </a>
+            <ul>
+                <li> <a href="{{route('admin.getallmessges')}}"><i class="bx bx-right-arrow-alt"></i>All messages</a>
+                </li>
+            </ul>
+        </li>
+        {{-- contact us messages end --}}
 
         {{-- <li class="menu-label">UI Elements</li>
         <li>
