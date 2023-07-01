@@ -36,6 +36,11 @@ class ManageordersController extends Controller
         return view('admin.orders.completeorder' ,compact('completeorders'));
     }
 
+    public function getallcancelorders () {
+        $cancelorders = Orders::where('order_status' , 'Cancel')->orderBy('id', 'DESC')->get();
+        return view('admin.orders.cancelorders' ,compact('cancelorders'));
+    }
+
     public function oderdetailsbyid($id) {
         $getorders = Orders::where('id' , $id)->first();
         return view('admin.orders.orderdetails' ,compact('getorders'));
@@ -80,7 +85,7 @@ class ManageordersController extends Controller
             'message' => 'Order mark as Cancel',
             'alert-type' => 'success'
         );
-        return redirect()->route('admin.orderdetailsbyid')->with($notification);
+        return redirect()->route('admin.getallpendongorders')->with($notification);
     }
 
 

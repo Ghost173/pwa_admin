@@ -116,6 +116,9 @@ Route::group(['prefix' => 'orders', 'middleware' =>'auth:admin'], function() {
     Route::get('pendingoders' , [ManageordersController::class, 'getpendingorders' ])->name('admin.getallpendongorders');
     Route::get('processingoders' , [ManageordersController::class, 'getallprocessingoders' ])->name('admin.getallprocessingoders');
     Route::get('completeorders' , [ManageordersController::class, 'getallcompleteorders' ])->name('admin.getallcompleteorders');
+
+    Route::get('cancelorders' , [ManageordersController::class, 'getallcancelorders' ])->name('admin.getallcancelorders');
+    
     Route::get('oderdetails/{id}' , [ManageordersController::class, 'oderdetailsbyid' ])->name('admin.orderdetailsbyid');
 
     Route::get('pendingtoprocessing/{id}' , [ManageordersController::class, 'pendingtoprocessing' ])->name('admin.pendingtoprocessing');

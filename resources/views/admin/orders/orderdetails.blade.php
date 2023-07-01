@@ -100,9 +100,17 @@
                                             <br>
                                             @if ($getorders->order_status == "Pending")
                                            <a href="{{route('admin.pendingtoprocessing', $getorders->id)}}" class="btn btn-block btn-success">Processing Ordert</a>
+                                            @if ($getorders->customer_cancel_request == 1)
+                                            <br>
+                                            <a href="{{route('admin.confirmtocancel', $getorders->id)}}" class="btn btn-block btn-danger">Cancel Ordert</a>
+                                            @endif
                                            
                                             @elseif ($getorders->order_status == "Processing")
                                             <a href="{{route('admin.processingtoconfirm', $getorders->id)}}" class="btn btn-block btn-success">Complete Ordert</a>
+                                            @if ($getorders->customer_cancel_request == 1)
+                                            <br>
+                                            <a href="{{route('admin.confirmtocancel', $getorders->id)}}" class="btn btn-block btn-danger">Cancel Ordert</a>
+                                            @endif
                                             @elseif ($getorders->order_status == "Complete")
                                             <a href="{{route('admin.confirmtocancel', $getorders->id)}}" class="btn btn-block btn-danger">Cancel Ordert</a>
                                             @endif

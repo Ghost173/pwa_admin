@@ -91,7 +91,7 @@
         {{-- Orders --}}
         <li>
             <a class="has-arrow" href="javascript:;">
-                <div class="parent-icon"> <i class="bx bx-donate-blood"></i>
+                <div class="parent-icon"> <i class="bx bx-car"></i>
                 </div>
                 <div class="menu-title">Orders</div>
             </a>
@@ -102,9 +102,27 @@
                 </li>
                 <li> <a href="{{route('admin.getallcompleteorders')}}"><i class="bx bx-right-arrow-alt"></i>Complete Orders</a>
                 </li>
+                <li> <a href="{{route('admin.getallcancelorders')}}"><i class="bx bx-right-arrow-alt"></i>Cancel Orders</a>
+                </li>
             </ul>
         </li>
-        
+        {{-- order end here --}}
+
+
+        <li>
+            <a class="has-arrow" href="javascript:;">
+                <div class="parent-icon"> <i class="bx bx-star"></i>
+                </div>
+                <div class="menu-title">Reviews</div>
+            </a>
+            <ul>
+                <li> <a href=""><i class="bx bx-right-arrow-alt"></i>Peding Reviews</a>
+                </li>
+                <li> <a href=""><i class="bx bx-right-arrow-alt"></i>Approved Reviews</a>
+                </li>
+                </li>
+            </ul>
+        </li>
 
         {{-- <li class="menu-label">UI Elements</li>
         <li>
