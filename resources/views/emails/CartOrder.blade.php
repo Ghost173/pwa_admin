@@ -84,6 +84,12 @@
             <p><strong>Account Holder:</strong>Prakash</p>
             <p><strong>Account Number:</strong> 123456789</p>
             <p><strong>Branch:</strong> Wellawatta</p>
+            <p><strong>referance:</strong> {{ $mailData['orderid'] }}</p>
+
+            <hr>
+            <h4>Please Reply with Transfer Evidence</h4>
+            <p>After completing the bank transfer, please reply to this email and attach the transfer evidence (screenshot)
+                for verification purposes.</p>
         </div>
     </div>
 

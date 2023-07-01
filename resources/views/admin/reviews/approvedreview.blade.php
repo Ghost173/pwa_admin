@@ -110,7 +110,7 @@
                                     <td> <span class="badge bg-success">Active</span></td> 
                                     <td>
                                         <div class="d-flex order-actions">
-                                                <a href="{{route('admin.deactivereview',$item->id)}}" class="ms-2 dislikeIcon" ><i class="bx bx-like" title="Approve this review"></i></a>
+                                                <a href="{{route('admin.deactivereview',$item->id)}}" class="ms-2 dislikeIcon" ><i class="bx bx-like" title="Deactive this review"></i></a>
                                         </div>
                                     </td>
                                    

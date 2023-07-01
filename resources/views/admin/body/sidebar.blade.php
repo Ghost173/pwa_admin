@@ -29,11 +29,10 @@
                 <div class="menu-title">Category</div>
             </a>
             <ul>
-                <li> <a href="{{route('admin.addcategory')}}"><i class="bx bx-right-arrow-alt"></i>Add Category</a>
-                </li>
-                <li> <a href="{{route('admin.getcategories')}}"><i class="bx bx-right-arrow-alt"></i>All Categoryies</a>
-                </li>
-                </li>
+                <li> <a href="{{route('admin.getcategories')}}"><i class="bx bx-right-arrow-alt"></i>All Categoryies</a></li>
+                <li> <a href="{{route('admin.addcategory')}}"><i class="bx bx-right-arrow-alt"></i>Add Category</a></li>
+                
+
             </ul>
         </li>
 
@@ -47,9 +46,8 @@
             <ul>
                 <li> <a href="{{route('admin.getallsubcategories')}}"><i class="bx bx-right-arrow-alt"></i>All SubCategory</a>
                 </li>
-                <li> <a href="{{route('admin.addsubcategory')}}"><i class="bx bx-right-arrow-alt"></i>Add SubCategory</a>
-                </li>
-                </li>
+                <li> <a href="{{route('admin.addsubcategory')}}"><i class="bx bx-right-arrow-alt"></i>Add SubCategory</a></li>
+
             </ul>
         </li>
         {{-- Sub category section end  --}}
@@ -78,11 +76,9 @@
                 <div class="menu-title">Products</div>
             </a>
             <ul>
-                <li> <a href="{{route('admin.addproduct')}}"><i class="bx bx-right-arrow-alt"></i>Add Product</a>
-                </li>
-                <li> <a href="{{route('admin.getallproducts')}}"><i class="bx bx-right-arrow-alt"></i>All Products</a>
-                </li>
-                </li>
+                <li> <a href="{{route('admin.getallproducts')}}"><i class="bx bx-right-arrow-alt"></i>All Products</a></li>
+                <li> <a href="{{route('admin.addproduct')}}"><i class="bx bx-right-arrow-alt"></i>Add Product</a></li>
+               
             </ul>
         </li>
         {{-- Products section end  --}}
@@ -135,6 +131,21 @@
             <ul>
                 <li> <a href="{{route('admin.getallmessges')}}"><i class="bx bx-right-arrow-alt"></i>All messages</a>
                 </li>
+            </ul>
+        </li>
+        {{-- contact us messages end --}}
+
+
+        {{-- contact us messages --}}
+        <li>
+            <a class="has-arrow" href="javascript:;">
+                <div class="parent-icon"> <i class="bx bx-bell"></i>
+                </div>
+                <div class="menu-title">Notification </div>
+            </a>
+            <ul>
+                <li> <a href="{{route('admin.getallnotificatiuons')}}"><i class="bx bx-right-arrow-alt"></i>All Notification</a></li>
+                <li> <a href="{{route('admin.addnotification')}}"><i class="bx bx-right-arrow-alt"></i>Add Notification</a></li>
             </ul>
         </li>
         {{-- contact us messages end --}}

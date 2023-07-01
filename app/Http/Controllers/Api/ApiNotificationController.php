@@ -11,7 +11,9 @@ class ApiNotificationController extends Controller
 {
     //
     public function getNotifications() {
-        $data = Notification::get();
+        $data = Notification::where('status',1)->get();
         return  $data;
     }
+
+
 }

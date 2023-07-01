@@ -69,7 +69,7 @@
                                     <td scope="row"><div class="badge rounded-pill bg-light-success text-success w-100">Complete</div></td>
                                    
                                     <td>
-                                        <a href="{{route('admin.orderdetailsbyid', $item->id)}}" class="btn btn-primary px-3 ">details</a>
+                                        <a href="{{route('admin.orderdetailsbyid', $item->id)}}" class="btn btn-primary btn-sm px-2 ">details</a>
                                     </td>
                                 </tr>
                             @endforeach
