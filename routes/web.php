@@ -8,6 +8,8 @@ use App\Http\Controllers\admin\AdminSubCategoryController;
 use App\Http\Controllers\admin\SliderController;
 use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\admin\ManageordersController;
+use App\Http\Controllers\admin\ReviewController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -116,18 +118,25 @@ Route::group(['prefix' => 'orders', 'middleware' =>'auth:admin'], function() {
     Route::get('pendingoders' , [ManageordersController::class, 'getpendingorders' ])->name('admin.getallpendongorders');
     Route::get('processingoders' , [ManageordersController::class, 'getallprocessingoders' ])->name('admin.getallprocessingoders');
     Route::get('completeorders' , [ManageordersController::class, 'getallcompleteorders' ])->name('admin.getallcompleteorders');
-
     Route::get('cancelorders' , [ManageordersController::class, 'getallcancelorders' ])->name('admin.getallcancelorders');
-    
     Route::get('oderdetails/{id}' , [ManageordersController::class, 'oderdetailsbyid' ])->name('admin.orderdetailsbyid');
-
     Route::get('pendingtoprocessing/{id}' , [ManageordersController::class, 'pendingtoprocessing' ])->name('admin.pendingtoprocessing');
     Route::get('processingtoconfirm/{id}' , [ManageordersController::class, 'processingtoconfirm' ])->name('admin.processingtoconfirm');
     Route::get('confirmtocancel/{id}' , [ManageordersController::class, 'confirmtocancel' ])->name('admin.confirmtocancel');
-
     Route::post('updatepaymentid/{id}' , [ManageordersController::class, 'updatepaymentid' ])->name('admin.updatepaymentid');
+});
+
+// Review
+Route::group(['prefix' => 'review', 'middleware' =>'auth:admin'], function() {
+    Route::get('allpendingreview' , [ReviewController::class, 'allpendingreviews' ])->name('admin.allpendingreviews');
+    Route::get('allapprovedreview' , [ReviewController::class, 'allapprovedreview' ])->name('admin.allapprovedreviews');
+    Route::get('approvereview/{id}' , [ReviewController::class, 'approvereview' ])->name('admin.approvereview');
+    Route::get('markaspending/{id}' , [ReviewController::class, 'deactivereview' ])->name('admin.deactivereview');
+
+
 
 });
+
 
 Route::get('category/subcategory/ajax/{product_category_id}' , [ProductController::class, 'categorysub' ]);
 

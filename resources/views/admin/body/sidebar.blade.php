@@ -116,9 +116,9 @@
                 <div class="menu-title">Reviews</div>
             </a>
             <ul>
-                <li> <a href=""><i class="bx bx-right-arrow-alt"></i>Peding Reviews</a>
+                <li> <a href="{{route('admin.allpendingreviews')}}"><i class="bx bx-right-arrow-alt"></i>Peding Reviews</a>
                 </li>
-                <li> <a href=""><i class="bx bx-right-arrow-alt"></i>Approved Reviews</a>
+                <li> <a href="{{route('admin.allapprovedreviews')}}"><i class="bx bx-right-arrow-alt"></i>Approved Reviews</a>
                 </li>
                 </li>
             </ul>
