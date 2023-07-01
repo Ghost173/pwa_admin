@@ -312,7 +312,8 @@ $publicUrl_image4 = Storage::cloud('s3')->url($urlpath_image_four);
         }
         ProductList::where('id',$id)->delete();
 
-        $productdetails = productDetails::where('id',$id)->first();
+        $productdetails = productDetails::where('product_id',$id)->first();
+        // dd($productdetails);
         if($productdetails->image_one_s3) {
             Storage::disk('s3')->delete($productdetails->image_one_s3);
         }

@@ -7,6 +7,7 @@ use App\Http\Controllers\admin\AdminCategoryController;
 use App\Http\Controllers\admin\AdminSubCategoryController;
 use App\Http\Controllers\admin\SliderController;
 use App\Http\Controllers\admin\ProductController;
+use App\Http\Controllers\admin\ManageordersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -107,8 +108,24 @@ Route::group(['prefix' => 'product', 'middleware' =>'auth:admin'], function() {
     Route::get('add' , [ProductController::class, 'addproduct' ])->name('admin.addproduct');
     Route::post('store' , [ProductController::class, 'storeproduct' ])->name('admin.storeproduct');
     Route::get('delete/{id}' , [ProductController::class, 'deleteproduct' ])->name('admin.deleteproduct');
+});
 
-   
+
+//Orders 
+Route::group(['prefix' => 'orders', 'middleware' =>'auth:admin'], function() {
+    Route::get('pendingoders' , [ManageordersController::class, 'getpendingorders' ])->name('admin.getallpendongorders');
+    Route::get('processingoders' , [ManageordersController::class, 'getallprocessingoders' ])->name('admin.getallprocessingoders');
+    Route::get('completeorders' , [ManageordersController::class, 'getallcompleteorders' ])->name('admin.getallcompleteorders');
+
+    Route::get('cancelorders' , [ManageordersController::class, 'getallcancelorders' ])->name('admin.getallcancelorders');
+    
+    Route::get('oderdetails/{id}' , [ManageordersController::class, 'oderdetailsbyid' ])->name('admin.orderdetailsbyid');
+
+    Route::get('pendingtoprocessing/{id}' , [ManageordersController::class, 'pendingtoprocessing' ])->name('admin.pendingtoprocessing');
+    Route::get('processingtoconfirm/{id}' , [ManageordersController::class, 'processingtoconfirm' ])->name('admin.processingtoconfirm');
+    Route::get('confirmtocancel/{id}' , [ManageordersController::class, 'confirmtocancel' ])->name('admin.confirmtocancel');
+
+    Route::post('updatepaymentid/{id}' , [ManageordersController::class, 'updatepaymentid' ])->name('admin.updatepaymentid');
 
 });
 

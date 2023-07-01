@@ -1,6 +1,20 @@
 @extends('admin.admin_master')
 
 @section('admin')
+<style>
+
+    .deleteIcon:hover i {
+        color: red; /* Change the color to the desired hover color */
+    }
+    .dislikeIcon:hover i {
+        color: blue; 
+    }
+    .likeIcon:hover i {
+        color: blue; 
+    }
+
+</style>
+
     <div class="page-wrapper">
         <div class="page-content">
 
@@ -36,19 +50,16 @@
                                   
                                     <td><img src="{{ asset($item->slider_image) }}" style="width: 50px; height: 50px"></td>
                                     <td>
-                                        @if($item->slider_status == 1)
-                                        <a href="{{route('admin.deactiveslider',$item->id)}}"><i class="fadeIn animated bx bx-dislike bx-sm"
-                                            style="color: rgb(231, 74, 1);" title="Deactive"></i>
-                                    </a>
-                                        @else 
-                                        <a href="{{route('admin.activeslider',$item->id)}}"><i class="fadeIn animated bx bx-like bx-sm "
-                                            style="color: rgb(1, 170, 43);" title="Delete"></i>
-                                        </a>
-                                        &nbsp;   
-                                        @endif
-                                        <a href="{{route('admin.deleteslider',$item->id)}}" id="delete"><i class="fadeIn animated bx bx-trash bx-sm"
-                                                style="color: rgb(231, 1, 1);" title="Active"></i>
-                                        </a>
+
+                                        <div class="d-flex order-actions">
+                                            @if($item->slider_status == 1)
+                                                <a href="{{route('admin.deactiveslider', $item->id)}}" class="ms-2 dislikeIcon" ><i class="bx bx-dislike" title="Makrk this slider as inactive"></i></a>
+                                            @else
+                                            <a href="{{route('admin.activeslider', $item->id)}}" class="ms-2 likeIcon"><i class="bx bx-like" title="Makrk this slider as active"></i></a>
+                                            @endif
+                                            <a href="{{route('admin.deleteslider',$item->id)}}" id="delete" class="ms-2 deleteIcon"><i class="bx bxs-trash" title="Delete"></i></a>
+                                        </div>
+
                                     </td>
                                 </tr>
                             @endforeach
