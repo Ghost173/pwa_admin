@@ -15,6 +15,22 @@
 
     <div class="page-wrapper">
         <div class="page-content">
+
+            <!--breadcrumb-->
+            <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+                <div class="breadcrumb-title pe-3">Categories</div>
+                <div class="ps-3">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb mb-0 p-0">
+                            <li class="breadcrumb-item"><a href="{{route('admindashboard')}}"><i class="bx bx-home-alt"></i></a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">All Categories</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+            <!--end breadcrumb-->
+
             <div class="card">
                 <div class="card-body">
                     <table class="table mb-0 table-striped">
@@ -30,6 +46,7 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @php ($i = 1) @endphp
                             @foreach ($allcategories as $item)
                                 @php
                                     
@@ -39,7 +56,7 @@
                                     
                                 @endphp
                                 <tr>
-                                    <th scope="row">{{$item->id}}</th>
+                                    <th scope="row">{{$i++}}</th>
                                     <td>{{ $item->category_name }}</td>
                                     <td><img src="{{ asset($item->category_image) }}" style="width: 50px; height: 50px">
                                     </td>
@@ -59,6 +76,7 @@
                     </table>
                 </div>
             </div>
+            
         </div>
     </div>
 @endsection

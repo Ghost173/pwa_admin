@@ -48,9 +48,10 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @php ($i = 1) @endphp
                             @foreach ($completeorders as $item)
                                 <tr>
-                                    <td scope="row">{{$item->id}}</td>
+                                    <td scope="row">{{$i++}}</td>
                                     <td scope="row">
                                         <div class="d-flex align-items-center">
                                             <div class="recent-product-img">
