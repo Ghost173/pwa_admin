@@ -76,7 +76,7 @@
                                     <td scope="row"><div class="badge rounded-pill bg-light-danger text-danger w-100">Pending</div></td>
                                    
                                     <td>
-                                        <a href="{{route('admin.orderdetailsbyid', $item->id)}}" class="btn btn-primary px-3 ">details</a>
+                                        <a href="{{route('admin.orderdetailsbyid', $item->id)}}" class="btn btn-primary btn-sm px-2 ">details</a>
                                     </td>
                                 </tr>
                             @endforeach

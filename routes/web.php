@@ -10,7 +10,7 @@ use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\admin\ManageordersController;
 use App\Http\Controllers\admin\ReviewController;
 use App\Http\Controllers\admin\MessagesController;
-
+use App\Http\Controllers\admin\NotificationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -139,7 +139,19 @@ Route::group(['prefix' => 'review', 'middleware' =>'auth:admin'], function() {
 // Contact us
 Route::group(['prefix' => 'contactus', 'middleware' =>'auth:admin'], function() {
     Route::get('get/messages' , [MessagesController::class, 'getallmessges' ])->name('admin.getallmessges');
+});
 
+// Notifications
+Route::group(['prefix' => 'notificatiuons', 'middleware' =>'auth:admin'], function() {
+    Route::get('get/all' , [NotificationController::class, 'getallnotificatiuons' ])->name('admin.getallnotificatiuons'); 
+    Route::get('get/add' , [NotificationController::class, 'addnotificatiuons' ])->name('admin.addnotificatiuons'); 
+    Route::get('deactive/{id}' , [NotificationController::class, 'notificationdeactive' ])->name('admin.notificationdeactive'); 
+    Route::get('active/{id}' , [NotificationController::class, 'notificationactive' ])->name('admin.notificationactive'); 
+
+    Route::get('add' , [NotificationController::class, 'addnotification' ])->name('admin.addnotification'); 
+    Route::post('store' , [NotificationController::class, 'storenotification' ])->name('admin.storenotification'); 
+
+    
 });
 
 
