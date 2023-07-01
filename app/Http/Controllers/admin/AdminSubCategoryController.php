@@ -17,7 +17,7 @@ class AdminSubCategoryController extends Controller
 {
     // Get all Sub categories
     public function getallsubcategories() {
-        $subcategorie = SubCategory::get();
+        $subcategorie = SubCategory::latest()->get();
         return view('admin.subcategory.index',compact('subcategorie'));
     }
 

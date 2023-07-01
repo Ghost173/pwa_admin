@@ -16,13 +16,13 @@ class ReviewController extends Controller
 
     // get all pending reviews 
     public function allpendingreviews() {
-        $productpendingreviews = ProductReview::where('status', 0)->get();
+        $productpendingreviews = ProductReview::where('status', 0)->latest()->get();
         return  view('admin.reviews.pendingreviews',compact('productpendingreviews'));
     }
 
     // get all approved reviews 
     public function allapprovedreview() {
-        $productapprovedreviews = ProductReview::where('status', 1)->get();
+        $productapprovedreviews = ProductReview::where('status', 1)->latest()->get();
         return  view('admin.reviews.approvedreview',compact('productapprovedreviews'));
     }
 

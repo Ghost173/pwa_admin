@@ -13,7 +13,7 @@ class NotificationController extends Controller
 {
 
     public function getallnotificatiuons() {
-        $notification = Notification::orderBy('id','desc')->get();
+        $notification = Notification::latest()->get();
         return view('admin.notifications.index',compact('notification'));
     }
 
