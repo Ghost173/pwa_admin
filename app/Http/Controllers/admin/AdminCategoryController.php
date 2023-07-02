@@ -18,7 +18,7 @@ class AdminCategoryController extends Controller
 {
 
     public function getallcategories () {
-        $allcategories = Category::orderBy('id','desc')->paginate(10);
+        $allcategories = Category::latest()->paginate(10);
         return view('admin.category.index',compact('allcategories'));
     }
 

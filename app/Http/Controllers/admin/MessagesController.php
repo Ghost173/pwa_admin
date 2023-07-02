@@ -9,7 +9,7 @@ use App\Models\Api\Contact;
 class MessagesController extends Controller
 {
     public function getallmessges() {
-        $Contact = Contact::orderBy('id','desc')->paginate(5);
+        $Contact = Contact::latest()->paginate(10);
         return view('admin.contact.index',compact('Contact'));
     }
 }
