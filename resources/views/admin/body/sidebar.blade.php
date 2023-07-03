@@ -150,6 +150,19 @@
         </li>
         {{-- contact us messages end --}}
 
+        {{-- contact us messages --}}
+        <li>
+            <a class="has-arrow" href="javascript:;">
+                <div class="parent-icon"> <i class="bx bx-bell"></i>
+                </div>
+                <div class="menu-title">User Mangement </div>
+            </a>
+            <ul>
+                <li> <a href=""><i class="bx bx-right-arrow-alt"></i>All Users</a></li>
+            </ul>
+        </li>
+        {{-- contact us messages end --}}
+
         {{-- <li class="menu-label">UI Elements</li>
         <li>
             <a href="widgets.html">
