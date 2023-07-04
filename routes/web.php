@@ -11,6 +11,7 @@ use App\Http\Controllers\admin\ManageordersController;
 use App\Http\Controllers\admin\ReviewController;
 use App\Http\Controllers\admin\MessagesController;
 use App\Http\Controllers\admin\NotificationController;
+use App\Http\Controllers\admin\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -147,13 +148,14 @@ Route::group(['prefix' => 'notificatiuons', 'middleware' =>'auth:admin'], functi
     Route::get('get/add' , [NotificationController::class, 'addnotificatiuons' ])->name('admin.addnotificatiuons'); 
     Route::get('deactive/{id}' , [NotificationController::class, 'notificationdeactive' ])->name('admin.notificationdeactive'); 
     Route::get('active/{id}' , [NotificationController::class, 'notificationactive' ])->name('admin.notificationactive'); 
-
     Route::get('add' , [NotificationController::class, 'addnotification' ])->name('admin.addnotification'); 
     Route::post('store' , [NotificationController::class, 'storenotification' ])->name('admin.storenotification'); 
-
-    
 });
 
+//UserController
+Route::group(['prefix' => 'users', 'middleware' =>'auth:admin'], function() {
+    Route::get('get/all' , [UserController::class, 'index' ])->name('admin.getallusers');
+});
 
 
 Route::get('category/subcategory/ajax/{product_category_id}' , [ProductController::class, 'categorysub' ]);
