@@ -26,6 +26,9 @@ class AuthController extends Controller
                 $user = Auth::user();
                 $token = $user->createToken('app')->accessToken;
 
+                $user->touch(); // Update the updated_at timestamp
+                
+
                 return response ([
                     'message' => "Successfully Login",
                     'token' => $token,
