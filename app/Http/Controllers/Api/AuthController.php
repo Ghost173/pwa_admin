@@ -27,15 +27,12 @@ class AuthController extends Controller
                 $token = $user->createToken('app')->accessToken;
 
                 $user->touch(); // Update the updated_at timestamp
-                
-
                 return response ([
                     'message' => "Successfully Login",
                     'token' => $token,
                     'UserDetails' => $user
                 ],200);
             }
-
 
         }catch(Exception $exception) {
             return response([
@@ -84,8 +81,6 @@ class AuthController extends Controller
     }
 
 
-
-
     public function logout(Request $request) {
         // $accessToken = auth()->user()->token();
         // $token= $request->user()->tokens->find($accessToken);
@@ -98,7 +93,6 @@ class AuthController extends Controller
 
     public function forgotpassword(Request $request) {
 
-
         $validator = Validator::make($request->all(), [
             'email' => 'required',
         ]);
@@ -106,7 +100,6 @@ class AuthController extends Controller
         {
             return response(['errors'=>$validator->errors()->all()], 401);
         }
-
 
         $email = $request->email;
 
@@ -137,7 +130,6 @@ class AuthController extends Controller
             ],400);
         }
     }
-
 
     public function restpassword(Request $request) {
         $validator = Validator::make($request->all(), [
